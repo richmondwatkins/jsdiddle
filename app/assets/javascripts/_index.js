@@ -45,9 +45,14 @@ function init(){
   var css = cssEditor.getValue();
 
   $('iframe').remove();
-  var iframe = $('<iframe id="results"></iframe>');
+  var iframe = document.createElement("iframe");
+  iframe.setAttribute("id", "results");  
+
+  iframe.onload = function() {
+    document.getElementById('results').contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><style>'+css+'</style><body>'+html+'<script>'+js+'</script></body></html>');
+  };
+
   $('#iframe-container').append(iframe);
-  document.getElementById('results').contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><style>'+css+'</style><body>'+html+'<script>'+js+'</script></body></html>');
 
   e.preventDefault();
  }
@@ -62,7 +67,6 @@ function saveProject(e){
       data: { project: { name: "Project", html: html, javascript: js, css:css } },
       success: function(data){
         window.location = '/projects/' + data.id;
-        console.log(data);
       }
     });
 

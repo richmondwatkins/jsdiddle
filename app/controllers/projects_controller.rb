@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
-
+  before_action :render_project_layout, only: [:index]
   def index
-
   end
 
   def create
@@ -10,6 +9,7 @@ class ProjectsController < ApplicationController
       @project.user_id = current_user.id
     else
       @project = Project.new(project_params)
+      @project.user_id = 0
     end
       respond_to do |format|
         if @project.save
@@ -35,5 +35,9 @@ private
 
   def project_params
       params.require(:project).permit(:name, :html, :javascript, :css)
+  end
+
+  def render_project_layout
+   render :layout => 'project.html.erb'
   end
 end

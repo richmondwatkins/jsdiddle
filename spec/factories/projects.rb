@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-    html "MyString"
-    css "MyString"
-    javascript "MyString"
+    name "ProjectName"
+    html "ProjectHTML"
+    css "ProjectCSS"
+    javascript "ProjectJavascript"
   end
 end

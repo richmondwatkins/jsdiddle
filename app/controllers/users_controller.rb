@@ -12,4 +12,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_projects
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json { render json:@user.projects}
+    end
+  end
+
 end
