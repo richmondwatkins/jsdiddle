@@ -14,9 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require jqx-all
 //= require src/ace.js
 //= require src/mode-css.js
 //= require src/mode-html.js
-
+//= require jqx-all
  

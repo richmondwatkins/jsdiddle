@@ -5,16 +5,21 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-    respond_to do |format|
-      if @project.save
-        format.json { render json: @project, status: :created, location: @project }
-        format.html { redirect_to(@project, :notice => 'Project was successfully created!')}
-      else
-        format.html { flash.now[:notice]="Save proccess coudn't be completed!" }
-        # format.json { render json: @project.errors, status: :unprocessable_entity}
-      end
+    if user_signed_in?
+      @project = Project.new(project_params)
+      @project.user_id = current_user.id
+    else
+      @project = Project.new(project_params)
     end
+      respond_to do |format|
+        if @project.save
+          format.json { render json: @project, status: :created, location: @project }
+          format.html { redirect_to(@project, :notice => 'Project was successfully created!')}
+        else
+          format.html { flash.now[:notice]="Save proccess coudn't be completed!" }
+          # format.json { render json: @project.errors, status: :unprocessable_entity}
+        end
+      end
   end
 
   def show
@@ -29,6 +34,6 @@ class ProjectsController < ApplicationController
 private
 
   def project_params
-    params.require(:project).permit(:name, :html, :javascript, :css)
+      params.require(:project).permit(:name, :html, :javascript, :css)
   end
 end

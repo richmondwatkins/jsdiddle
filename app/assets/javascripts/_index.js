@@ -1,10 +1,12 @@
-$(document).ready(function () {
-    makePanes();
-    syntax(); 
-        $('#run').click(buildCode);
-    $('#save').click(saveProject);
-  });
+(function(){
+$(document).ready(init);
 
+function init(){
+  $('#run').click(buildCode);
+  $('#save').click(saveProject);
+  syntax(); 
+  makePanes();
+}
  function makePanes(){
     var width = $(window).width();
     var panelSize = (width / 2);
@@ -19,7 +21,7 @@ $(document).ready(function () {
   var cssEditor;
 
  function syntax(){
-
+    
   htmlEditor = ace.edit("upper-left-editor");
   javascriptEditor = ace.edit("lower-left-editor");
   cssEditor = ace.edit("upper-right-editor");
@@ -66,3 +68,5 @@ function saveProject(e){
 
   e.preventDefault();
 } 
+
+})();

@@ -1,3 +1,5 @@
+(function(){
+
 $(document).ready(function () {
     queryProject();
     makePanes();
@@ -89,3 +91,5 @@ function saveProject(e){
 
   e.preventDefault();
 } 
+
+})();
