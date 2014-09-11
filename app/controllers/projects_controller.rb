@@ -8,15 +8,13 @@ class ProjectsController < ApplicationController
     if user_signed_in?
       @project = Project.create(project_params)
       @project.user_id = current_user.id
+      @project.save
     else
       @project = Project.create(project_params)
       @project.user_id = 0
     end
-    # respond_to do |format|
-    #   format.html {render la}
-    #   format.json { render json: @project }
-    # end
-    render :layout => 'project.html.erb', :js => "window.location = '#{edit_project_path(@project)}'"
+
+    render  :js => "window.location = '#{edit_project_path(@project)}'"
   end
 
   def show

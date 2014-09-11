@@ -21,10 +21,24 @@ function getUserProjects(){
 }
 
 function loadIframes(data){
-    var $div = $('')
-    var iframe = $('<a href="/projects/'+data.id+'">'+data.name+'</a><iframe class="project-iframe", id="'+data.id+'"></iframe>');
+  if(data.javascript.length > 4){
+    var iframe = $('<button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.id+'/edit">'+data.name+'</a><iframe class="project-iframe", id="'+data.id+'"></iframe>');
     $('#projects-container').append(iframe);
-    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">alert("adf");</script></script><style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
+    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script><style>'+data.css+'</style><body>'+data.html+'</body></html>');
+    $('.run-js').click(runJS);
+  }else{
+    var iframe = $('<a href="/projects/'+data.id+'/edit">'+data.name+'</a><iframe class="project-iframe", id="'+data.id+'"></iframe>');
+    $('#projects-container').append(iframe);
+    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script><style>'+data.css+'</style><body>'+data.html+'</body></html>');
+  }
+ }
+
+ function runJS(){
+  var js = $(this).data('javascript');
+  var projectId = $(this).data('id');
+
+  document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
+
  }
 
 
