@@ -1,6 +1,6 @@
 require 'securerandom'
 class ProjectsController < ApplicationController
-  before_action :render_project_layout, only: [:index, :edit]
+  before_action :render_project_layout, only: [:index, :show]
 
   def index
   end
@@ -21,24 +21,6 @@ class ProjectsController < ApplicationController
     @project.save
     flash[:notice] = "Your Diddle was successfully saved!"
     render  :js => "window.location = '/projects/#{@project.params}/#{@project.version}'"
-  end
-
-  # def show
-  #   @project = Project.find(params[:id])
-
-  #   respond_to do |format|
-  #     format.html # sho
-  #     format.json { render json: @project }
-  #   end
-  # end
-
-  def edit
-    @project = Project.find_by(params[:id])
-
-    respond_to do |format|
-      format.html # sho
-      format.json { render json: @project }
-    end
   end
 
   def show

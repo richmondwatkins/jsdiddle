@@ -7,6 +7,5 @@ Rails.application.routes.draw do
   get 'user/:id/projects', :to => 'users#get_projects'
   get 'projects/:params/:version', :to => 'projects#show'
   post 'projects/:params/update/:version', :to => 'projects#update'
-    # get 'projects/:params/edit/:version', :to => 'projects#edit'
 
 end
