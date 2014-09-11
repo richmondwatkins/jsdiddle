@@ -64,10 +64,7 @@ function saveProject(e){
     $.ajax({
       type: "POST",
       url: "/projects",
-      data: { project: { name: "Project", html: html, javascript: js, css:css } },
-      success: function(data){
-        window.location = '/projects/' + data.id;
-      }
+      data: { project: { name: "Project", html: html, javascript: js, css:css } }
     });
 
   e.preventDefault();

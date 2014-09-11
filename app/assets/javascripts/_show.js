@@ -52,7 +52,11 @@ $(document).ready(function () {
  }
 
  function queryProject(){
-  var id = $('#project-id').data('id');
+
+  var path = window.location.pathname;
+  var regex =  /\d+/;
+  var id = path.match(regex);
+
   $.ajax({
       type: "GET",
       dataType: "json",

@@ -3,9 +3,10 @@
 <h3>User</h3>
 <p>Name: <%= @user.name if @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
-<% if current_user %>
+<% if @user == current_user %>
 <%= link_to 'Edit account', edit_user_registration_path %>
 <% end %>
 <div id="projects-container"></div>
+<input type="hidden" id="refresh">
 
 <%= javascript_include_tag "_profile.js" %>
