@@ -1,6 +1,6 @@
 require 'securerandom'
 class ProjectsController < ApplicationController
-  before_action :render_project_layout, only: [:index, :show]
+  before_action :render_project_layout, only: [:index]
 
   def index
   end

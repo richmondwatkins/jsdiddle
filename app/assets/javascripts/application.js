@@ -18,4 +18,5 @@
 //= require src/mode-css.js
 //= require src/mode-html.js
 //= require jqx-all
- 
+//= require bootstrap.min.js
+ //= require _build-editor.js

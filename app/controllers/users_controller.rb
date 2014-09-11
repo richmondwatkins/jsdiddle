@@ -7,9 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # unless @user == current_user
-    #   redirect_to :back, :alert => "Access denied."
-    # end
+
   end
 
   def get_projects
@@ -19,5 +17,7 @@ class UsersController < ApplicationController
       format.json { render json:@user.projects}
     end
   end
+
+
 
 end

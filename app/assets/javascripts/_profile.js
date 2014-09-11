@@ -22,7 +22,7 @@ function getUserProjects(){
 
 function loadIframes(data){
   if(data.javascript.length > 4){
-    var iframe = $('<div class="project-div"><div><button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.id+'/edit">'+data.name+'</a></div> \
+    var iframe = $('<div class="project-div"><div><button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.params+'/'+data.version+'">'+data.name+'</a></div> \
       <iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
 
     $('#projects-container').append(iframe);
@@ -33,7 +33,7 @@ function loadIframes(data){
     $('.run-js').click(runJS);
 
   }else{
-    var iframe = $('<div class="project-div"><div><a href="/projects/'+data.id+'/edit">'+data.name+'</a></div><iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
+    var iframe = $('<div class="project-div"><div><a href="/projects/'+data.params+'/'+data.version+'">'+data.name+'</a></div><iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
 
     $('#projects-container').append(iframe);
 

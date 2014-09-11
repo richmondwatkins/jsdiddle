@@ -2,54 +2,8 @@
 
 $(document).ready(function () {
     queryProject();
-    makePanes();
-    syntax(); 
-    $('#run').click(buildCode);
-    $('#save').click(saveProject);
+    $('#save').click(updateProject);
   });
-
- function makePanes(){
-    var width = $(window).width();
-    var panelSize = (width / 2);
-    var height = $(window).height();
-    $('#mainSplitter').jqxSplitter({ width: width, height: height, panels: [{ size: panelSize }] });
-    $('#leftSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
-    $('#rightSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
- }
-
-  var htmlEditor;
-  var javascriptEditor;
-  var cssEditor;
-
- function syntax(){
-
-  htmlEditor = ace.edit("upper-left-editor");
-  javascriptEditor = ace.edit("lower-left-editor");
-  cssEditor = ace.edit("upper-right-editor");
-
-  htmlEditor.setTheme("ace/theme/monokai");
-  javascriptEditor.setTheme("ace/theme/monokai");
-  cssEditor.setTheme("ace/theme/monokai");
-
-  htmlEditor.getSession().setMode("ace/mode/html");
-  javascriptEditor.getSession().setMode("ace/mode/javascript");
-  cssEditor.getSession().setMode("ace/mode/css");
-
-  htmlEditor.getSession().setUseSoftTabs(true);
-  javascriptEditor.getSession().setUseSoftTabs(true);
-  cssEditor.getSession().setUseSoftTabs(true);
- }
-
- function buildCode(e){
-  var html = htmlEditor.getValue();
-  var js = javascriptEditor.getValue();
-  var css = cssEditor.getValue();
-
-  var data = {html: html, javascript: js, css: css};
-  loadIframe(data);
-
-  e.preventDefault();
- }
 
  function queryProject(){
 
@@ -79,11 +33,7 @@ $(document).ready(function () {
  }
 
 
-function saveProject(e){
-  // var path = window.location.pathname;
-  // var regex =  /\d+/;
-  // var id = path.match(regex);
-
+function updateProject(e){
   var path = window.location.pathname.split('/');
   var params = path[2];
   var version = path[3];
@@ -91,6 +41,7 @@ function saveProject(e){
   var html = htmlEditor.getValue();
   var js = javascriptEditor.getValue();
   var css = cssEditor.getValue();
+  var name = $('#project-name').val();
     $.ajax({
       type: "POST",
       url: "/projects/" +params+"/update/"+version,
