@@ -53,14 +53,13 @@ $(document).ready(function () {
 
  function queryProject(){
 
-  var path = window.location.pathname;
-  var regex =  /\d+/;
-  var id = path.match(regex);
-
+  var path = window.location.pathname.split('/');
+  var params = path[2];
+  var version = path[3];
   $.ajax({
       type: "GET",
       dataType: "json",
-      url: "/projects/" + id,
+      url: "/projects/" + params + "/" + version,
       success: function(data){
         htmlEditor.setValue(data.html);
         javascriptEditor.setValue(data.javascript);
@@ -81,16 +80,20 @@ $(document).ready(function () {
 
 
 function saveProject(e){
-  var path = window.location.pathname;
-  var regex =  /\d+/;
-  var id = path.match(regex);
+  // var path = window.location.pathname;
+  // var regex =  /\d+/;
+  // var id = path.match(regex);
+
+  var path = window.location.pathname.split('/');
+  var params = path[2];
+  var version = path[3];
 
   var html = htmlEditor.getValue();
   var js = javascriptEditor.getValue();
   var css = cssEditor.getValue();
     $.ajax({
-      type: "PUT",
-      url: "/projects/" +id,
+      type: "POST",
+      url: "/projects/" +params+"/update/"+version,
       data: { project: { name: "Project", html: html, javascript: js, css:css } }
     });
 

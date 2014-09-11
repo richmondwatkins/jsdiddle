@@ -1,3 +1,4 @@
+require 'securerandom'
 class ProjectsController < ApplicationController
   before_action :render_project_layout, only: [:index, :edit]
 
@@ -5,20 +6,34 @@ class ProjectsController < ApplicationController
   end
 
   def create
+
     if user_signed_in?
       @project = Project.create(project_params)
       @project.user_id = current_user.id
-      @project.save
     else
       @project = Project.create(project_params)
       @project.user_id = 0
     end
+
+    params = SecureRandom.hex(5)
+    @project.params = params
+    @project.version = 1
+    @project.save
     flash[:notice] = "Your Diddle was successfully saved!"
-    render  :js => "window.location = '#{edit_project_path(@project)}'"
+    render  :js => "window.location = '/projects/#{@project.params}/#{@project.version}'"
   end
 
-  def show
-    @project = Project.find(params[:id])
+  # def show
+  #   @project = Project.find(params[:id])
+
+  #   respond_to do |format|
+  #     format.html # sho
+  #     format.json { render json: @project }
+  #   end
+  # end
+
+  def edit
+    @project = Project.find_by(params[:id])
 
     respond_to do |format|
       format.html # sho
@@ -26,9 +41,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit
-    @project = Project.find(params[:id])
-
+  def show
+    @project = Project.find_by_params_and_version(params[:params], params[:version])
     respond_to do |format|
       format.html # sho
       format.json { render json: @project }
@@ -36,13 +50,19 @@ class ProjectsController < ApplicationController
   end
 
   def update
-      @project = Project.find(params[:id])
-    if @project.update_attributes(project_params)
-      flash[:notice] = "Your Diddle was successfully updated!"
-      render  :js => "window.location = '#{edit_project_path(@project)}'"
+    if user_signed_in?
+      @project = Project.create(project_params)
+      @project.user_id = current_user.id
     else
-      flash.notice = "Your changes could not be saved."
+      @project = Project.create(project_params)
+      @project.user_id = 0
     end
+    @project.params = params[:params]
+    @project.version = params[:version].to_i + 1
+    @project.save
+    flash[:notice] = "Your Diddle was successfully updated!"
+    render  :js => "window.location = '/projects/#{@project.params}/#{@project.version}'"
+ 
   end
 
 private
