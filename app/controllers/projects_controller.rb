@@ -15,6 +15,10 @@ class ProjectsController < ApplicationController
       @project.user_id = 0
     end
 
+    if @project.name == ''
+      @project.name = random_name_generator
+    end
+
     params = SecureRandom.hex(5)
     @project.params = params
     @project.version = 1
@@ -56,4 +60,10 @@ private
   def render_project_layout
    render :layout => 'project.html.erb'
   end
+
+  def random_name_generator
+   words = ["Diddle ", "Project ", "Diddly Doo ", "Code Master ", "Ninja " "My Diddle "]
+   words[rand(words.length)]+(rand(900)+100).to_s()
+  end
+
 end
