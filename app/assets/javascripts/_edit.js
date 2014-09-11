@@ -81,16 +81,17 @@ $(document).ready(function () {
 
 
 function saveProject(e){
+  var path = window.location.pathname;
+  var regex =  /\d+/;
+  var id = path.match(regex);
+
   var html = htmlEditor.getValue();
   var js = javascriptEditor.getValue();
   var css = cssEditor.getValue();
     $.ajax({
-      type: "POST",
-      url: "/projects",
-      data: { project: { name: "Project", html: html, javascript: js, css:css } },
-      success: function(data){
-        alert('saved from show');
-      }
+      type: "PUT",
+      url: "/projects/" +id,
+      data: { project: { name: "Project", html: html, javascript: js, css:css } }
     });
 
   e.preventDefault();

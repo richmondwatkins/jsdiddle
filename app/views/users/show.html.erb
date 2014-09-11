@@ -6,6 +6,7 @@
 <% if @user == current_user %>
 <%= link_to 'Edit account', edit_user_registration_path %>
 <% end %>
+
 <div id="projects-container"></div>
 
 <%= javascript_include_tag "_profile.js" %>
