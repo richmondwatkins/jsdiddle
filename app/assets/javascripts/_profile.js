@@ -22,14 +22,23 @@ function getUserProjects(){
 
 function loadIframes(data){
   if(data.javascript.length > 4){
-    var iframe = $('<button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.id+'/edit">'+data.name+'</a><iframe class="project-iframe", id="'+data.id+'"></iframe>');
+    var iframe = $('<div class="project-div"><div><button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.id+'/edit">'+data.name+'</a></div> \
+      <iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
+
     $('#projects-container').append(iframe);
-    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script><style>'+data.css+'</style><body>'+data.html+'</body></html>');
+
+    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
+      <style>'+data.css+'</style><body>'+data.html+'</body></html>');
+
     $('.run-js').click(runJS);
+
   }else{
-    var iframe = $('<a href="/projects/'+data.id+'/edit">'+data.name+'</a><iframe class="project-iframe", id="'+data.id+'"></iframe>');
+    var iframe = $('<div class="project-div"><div><a href="/projects/'+data.id+'/edit">'+data.name+'</a></div><iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
+
     $('#projects-container').append(iframe);
-    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script><style>'+data.css+'</style><body>'+data.html+'</body></html>');
+
+    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
+      <style>'+data.css+'</style><body>'+data.html+'</body></html>');
   }
  }
 
