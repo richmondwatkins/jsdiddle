@@ -9,21 +9,26 @@ $(document).ready(init);
 function init(){
   if($('#mainSplitter').length){
     makePanes();
-
     $('#theme-selection').on('change', changeTheme);
     $('#font-size').on('change', changeFontSize);
-
-
     createEditors();
 
+    // $(window).on('beforeunload', checkLeave);
+}
+
+function checkLeave(e){
+  console.log('check');
+   if(htmlEditor.getValue().length > 2 || cssEditor.getValue().length > 2 || javascriptEditor.getValue().length > 2){
+      console.log(cssEditor.getValue().length);
+        return 'Are you sure?';
+    }
   }
 }
 
 function makePanes(){
   var width = $(window).width();
   var panelSize = ((width * 0.85) / 2);
-  var height = $(window).height();
-  $('#mainSplitter').jqxSplitter({ width: '86%', height: height, panels: [{ size: panelSize }] });
+  $('#mainSplitter').jqxSplitter({ width: '86%', height: '90%', panels: [{ size: panelSize }] });
   $('#leftSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
   $('#rightSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
 }

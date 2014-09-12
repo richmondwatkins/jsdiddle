@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
     queryProject();
-    $('#save').click(updateProject);
+    $('#update').click(updateProject);
     $("#menu-toggle").click(toggleMenu);
     $('#run').click(buildCode);
   });
@@ -46,10 +46,12 @@ function updateProject(e){
   var js = javascriptEditor.getValue();
   var css = cssEditor.getValue();
   var name = $('#project-name').val();
+  var library = $('#library-selection').val()
+
     $.ajax({
       type: "POST",
       url: "/projects/" +params+"/update/"+version,
-      data: { project: { name: "Project", html: html, javascript: js, css:css } }
+      data: { project: { name: "Project", html: html, javascript: js, css:css, library:library } }
     });
 
   e.preventDefault();

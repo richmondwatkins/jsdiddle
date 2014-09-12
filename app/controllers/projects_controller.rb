@@ -1,8 +1,10 @@
 require 'securerandom'
 class ProjectsController < ApplicationController
-  before_action :render_project_layout, only: [:index]
 
   def index
+  end
+
+  def run
   end
 
   def create
@@ -55,10 +57,6 @@ private
 
   def project_params
       params.require(:project).permit(:name, :html, :javascript, :css, :library)
-  end
-
-  def render_project_layout
-   render :layout => 'project.html.erb'
   end
 
   def random_name_generator

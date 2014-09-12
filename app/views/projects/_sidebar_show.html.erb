@@ -7,16 +7,21 @@
                         Diddle Options
                     </a>
                 </li>
-                 <li>
-                    <a href="#" id="run"><span class="glyphicon glyphicon-play"></span>Run</a>
-                </li>
-                <li>
-                    <a href="#" id="save"><span class="glyphicon glyphicon-floppy-save"></span>Save</a>
-                </li>
                 <li>
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" id="project-name" placeholder="Diddle Name">
                     </div>
+                </li>
+                 <li> 
+                    <%= link_to run_project_path, id: "run", remote: true do %>
+                      <span class="glyphicon glyphicon-play"></span> Run
+                    <% end %>
+                </li>
+                 <li>
+                    <a href="#" id="update"><span class="glyphicon glyphicon-floppy-save"></span>Update</a>
+                </li>
+                <li>
+                    <a href="#" id="fork"><span class="glyphicon glyphicon-random"></span>Fork</a>
                 </li>
                 <li>
                     <select id="library-selection">
@@ -34,7 +39,7 @@
                         <option label="Angular" disabled="true">Angular</option>
                         <option value="<script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js'></script>">Angular 1.2.23</option>
                         <option value="<script src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js'></script>">Angular 1.1.1</option>
-                        <option label="jQuery" disabled="true">Underscore</option>
+                        <option label="Underscore" disabled="true">Underscore</option>
                         <option value="<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>">Underscore 1.6.0</option>
                         <option value="<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js'></script>">Underscore 1.5.2</option>
                     </select>
