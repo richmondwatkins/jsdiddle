@@ -54,7 +54,7 @@ class ProjectsController < ApplicationController
 private
 
   def project_params
-      params.require(:project).permit(:name, :html, :javascript, :css)
+      params.require(:project).permit(:name, :html, :javascript, :css, :library)
   end
 
   def render_project_layout
@@ -62,7 +62,7 @@ private
   end
 
   def random_name_generator
-   words = ["Diddle ", "Project ", "Diddly Doo ", "Code Master ", "Ninja " "My Diddle "]
+   words = ["Diddle ", "Project ", "Diddly Doo ", "Code Master ", "Ninja My Diddle "]
    words[rand(words.length)]+(rand(900)+100).to_s()
   end
 

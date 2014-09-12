@@ -1,7 +1,5 @@
 <script src="http://jqwidgets.com/public/jqwidgets/jqx-all.js"></script> 
 
-<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-
 <!-- Sidebar -->
     <div id="wrapper">
         <div id="sidebar-wrapper">
@@ -11,30 +9,72 @@
                         Diddle Options
                     </a>
                 </li>
-                <li>
-                    <input id="project-name">
+                 <li>
+                    <a href="#" id="run"><span class="glyphicon glyphicon-play"></span>Run</a>
                 </li>
                 <li>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <a href="#" id="save"><span class="glyphicon glyphicon-floppy-save"></span>Save</a>
+                </li>
+                <li>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" id="project-name" placeholder="Diddle Name">
+                    </div>
+                </li>
+                <li>
+                    <select id="library-selection">
+                        <option value="">No-Library (pure JS)</option>
+                        <option  disabled="true">jQuery</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>">jQuery 2.1.1</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>">jQuery 2.1.0</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>">jQuery 2.0.2</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.1.1/jquery.min.js'></script>">jQuery 1.1.1</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script>">jQuery 1.10.1</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>">jQuery 1.9.1</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>">jQuery 1.8.3</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>">jQuery 1.7.2</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>">jQuery 1.6.4</option>
+                        <option label="Angular" disabled="true">Angular</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js'></script>">Angular 1.2.23</option>
+                        <option value="<script src='//ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js'></script>">Angular 1.1.1</option>
+                        <option label="jQuery" disabled="true">Underscore</option>
+                        <option value="<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'></script>">Underscore 1.6.0</option>
+                        <option value="<script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js'></script>">Underscore 1.5.2</option>
                     </select>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    <select id="theme-selection">
+                        <option value="">Choose a Theme</option>
+                        <option value="ace/theme/ambiance">Ambiance</option>
+                        <option value="ace/theme/chaos">Chaos</option>
+                        <option value="ace/theme/chrome">Chrome</option>
+                        <option value="ace/theme/clouds">Clouds</option>
+                        <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+                        <option value="ace/theme/cobalt">Cobalt</option>
+                        <option value="ace/theme/crimson_editor">Crimson Editor</option>
+                        <option value="ace/theme/dawn">Dawn</option>
+                        <option value="ace/theme/dreamweaver">Dream Weaver</option>
+                        <option value="ace/theme/eclipse">Eclipse</option>
+                        <option value="ace/theme/github">GitHub</option>
+                        <option value="ace/theme/idle_fingers">Idle Fingers</option>
+                        <option value="ace/theme/katzenmilch">Katzenmilch</option>
+                        <option value="ace/theme/kuroir">Kuroir</option>
+                        <option value="ace/theme/merbivore">Merbivore</option>
+                        <option value="ace/theme/mono_industrial">Mono Industrial</option>
+                        <option value="ace/theme/monokai">Monokai</option>
+                        <option value="ace/theme/pastel_on_dark">Pastel Dark</option>
+                        <option value="ace/theme/solarized_dark">Solarized Dark</option>
+                        <option value="ace/theme/solarized_light">Solarized Light</option>
+                        <option value="ace/theme/terminal">Terminal</option>
+                        <option value="ace/theme/textmate">Textmate</option>
+                        <option value="ace/theme/tomorrow">Tomorrow</option>
+                        <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
+                        <option value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</option>
+                        <option value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</option>
+                        <option value="ace/theme/tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                        <option value="ace/theme/twilight">Twilight</option>
+                        <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+                        <option value="ace/theme/xcode">Xcode</option>
+                    </select>
                 </li>
             </ul>
         </div>

@@ -5,57 +5,57 @@ var cssEditor;
 (function(){
 $(document).ready(init);
 
+
 function init(){
   if($('#mainSplitter').length){
-    $('#run').click(buildCode);
-    syntax(); 
     makePanes();
+
+    $('#theme-selection').on('change', changeTheme);
+
+    createEditors();
+
   }
 }
- function makePanes(){
-    var width = $(window).width();
-    var panelSize = ((width * 0.85) / 2);
-    var height = $(window).height();
-    $('#mainSplitter').jqxSplitter({ width: '85%', height: height, panels: [{ size: panelSize }] });
-    $('#leftSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
-    $('#rightSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
- }
 
- function syntax(){
-    
-  htmlEditor = ace.edit("upper-left-editor");
-  javascriptEditor = ace.edit("lower-left-editor");
-  cssEditor = ace.edit("upper-right-editor");
+function makePanes(){
+  var width = $(window).width();
+  var panelSize = ((width * 0.85) / 2);
+  var height = $(window).height();
+  $('#mainSplitter').jqxSplitter({ width: '86%', height: height, panels: [{ size: panelSize }] });
+  $('#leftSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
+  $('#rightSplitter').jqxSplitter({ width: '100%', height: '100%', orientation: 'horizontal', panels: [{ size: '50%', collapsible: false }] });
+}
 
-  htmlEditor.setTheme("ace/theme/monokai");
-  javascriptEditor.setTheme("ace/theme/monokai");
-  cssEditor.setTheme("ace/theme/monokai");
+function createEditors(){
+ htmlEditor = (function() {
+    var aceEditor = ace.edit("upper-left-editor");
+    aceEditor.setTheme("ace/theme/clouds");
+    aceEditor.getSession().setMode("ace/mode/html");
+    return aceEditor;
+  })();
 
-  htmlEditor.getSession().setMode("ace/mode/html");
-  javascriptEditor.getSession().setMode("ace/mode/javascript");
-  cssEditor.getSession().setMode("ace/mode/css");
+ javascriptEditor = (function() {
+    var aceEditor = ace.edit("lower-left-editor");
+    aceEditor.setTheme("ace/theme/clouds");
+    aceEditor.getSession().setMode("ace/mode/javascript");
+    return aceEditor;
+  })();
 
-  htmlEditor.getSession().setUseSoftTabs(true);
-  javascriptEditor.getSession().setUseSoftTabs(true);
-  cssEditor.getSession().setUseSoftTabs(true);
- }
+ cssEditor = (function() {
+    var aceEditor = ace.edit("upper-right-editor");
+    aceEditor.setTheme("ace/theme/clouds");
+    aceEditor.getSession().setMode("ace/mode/css");
+    return aceEditor;
+  })();
 
- function buildCode(e){
-  var html = htmlEditor.getValue();
-  var js = javascriptEditor.getValue();
-  var css = cssEditor.getValue();
+}
 
-  $('iframe').remove();
-  var iframe = document.createElement("iframe");
-  iframe.setAttribute("id", "results");  
+function changeTheme(){
+  var theme = $('#theme-selection').val();
+  javascriptEditor.setTheme(theme);
+  htmlEditor.setTheme(theme);
+  cssEditor.setTheme(theme);
+}
 
-  iframe.onload = function() {
-    document.getElementById('results').contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><style>'+css+'</style><body>'+html+'<script>'+js+'</script></body></html>');
-  };
-
-  $('#iframe-container').append(iframe);
-
-  e.preventDefault();
- }
 
 })();

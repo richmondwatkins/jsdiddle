@@ -1,10 +1,11 @@
+
 (function(){
 
 $(document).ready(function () {
     queryProject();
     $('#save').click(updateProject);
     $("#menu-toggle").click(toggleMenu);
-
+    $('#run').click(buildCode);
   });
 
  function queryProject(){
@@ -32,7 +33,7 @@ $(document).ready(function () {
     $('iframe').remove();
     var iframe = $('<iframe id="results"></iframe>');
     $('#iframe-container').append(iframe);
-    document.getElementById('results').contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">alert("adf");</script></script><style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
+    document.getElementById('results').contentWindow.document.write('<html class="results-html">'+data.library+'</script><style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
  }
 
 
@@ -72,5 +73,26 @@ function toggleMenu(e){
   }
   e.preventDefault();  
 }
+
+
+ function buildCode(e){
+  var html = htmlEditor.getValue();
+  var js = javascriptEditor.getValue();
+  var css = cssEditor.getValue();
+  var library = $('#library-selection').val()
+  $('iframe').remove();
+  var iframe = document.createElement("iframe");
+  iframe.setAttribute("id", "results");  
+
+  iframe.onload = function() {
+    document.getElementById('results').contentWindow.document.write('<html class="results-html">'+library+'<style>'+css+'</style><body>'+html+'<script>'+js+'</script></body></html>');
+  };
+
+  $('#iframe-container').append(iframe);
+
+  e.preventDefault();
+ }
+
+ 
 
 })();

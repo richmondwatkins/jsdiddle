@@ -18,4 +18,4 @@
 //= require src/mode-html.js
 //= require jqx-all
 //= require bootstrap.min.js
- //= require _build-editor.js
+//= require _build-editor.js
