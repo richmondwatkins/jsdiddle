@@ -11,6 +11,8 @@ function init(){
     makePanes();
 
     $('#theme-selection').on('change', changeTheme);
+    $('#font-size').on('change', changeFontSize);
+
 
     createEditors();
 
@@ -56,6 +58,15 @@ function changeTheme(){
   htmlEditor.setTheme(theme);
   cssEditor.setTheme(theme);
 }
+
+function changeFontSize(){
+  var fontSize = $('#font-size').val();
+  javascriptEditor.setFontSize(fontSize);
+  htmlEditor.setFontSize(fontSize);
+  cssEditor.setFontSize(fontSize);
+}
+
+
 
 
 })();
