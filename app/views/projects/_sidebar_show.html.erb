@@ -1,3 +1,4 @@
+
 <!-- Sidebar -->
     <div id="wrapper">
         <div id="sidebar-wrapper">
@@ -20,8 +21,10 @@
                  <li>
                     <a href="#" id="update"><span class="glyphicon glyphicon-floppy-save"></span>Update</a>
                 </li>
-                <li>
-                    <a href="#" id="fork"><span class="glyphicon glyphicon-random"></span>Fork</a>
+                 <li> 
+                    <%= link_to fork_project_path, id: "fork", remote: true do %>
+                      <span class="glyphicon glyphicon-random"></span> Fork
+                    <% end %>
                 </li>
                 <li>
                     <select id="library-selection">

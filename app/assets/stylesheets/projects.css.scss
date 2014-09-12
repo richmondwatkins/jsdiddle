@@ -40,6 +40,21 @@
 
 }
 
+.window_label {
+  border: solid 1px #F1F1F1;
+  background: #fff;
+  display: inline-block;
+  height: 22px;
+  padding: 0 6px;
+  line-height: 22px;
+  position: absolute;
+  top: 7px;
+  right: 6px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 1px;
+  z-index: 30;
+}
 
 #mainSplitter {
   position: absolute;

@@ -1,0 +1,10 @@
+ var html = htmlEditor.getValue();
+  var js = javascriptEditor.getValue();
+  var css = cssEditor.getValue();
+  var name = $('#project-name').val();
+  var library = $('#library-selection').val()
+    $.ajax({
+      type: "POST",
+      url: "/projects",
+      data: { project: { name: name, html: html, javascript: js, css:css, library: library } }
+    });

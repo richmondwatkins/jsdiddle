@@ -17,10 +17,11 @@
                     <span class="glyphicon glyphicon-play"></span> Run
                     <% end %>
                 </li>
-                <li>
-                    <a href="#" id="save"><span class="glyphicon glyphicon-floppy-save"></span>Save</a>
+                <li> 
+                    <%= link_to new_project_path, id: "run", remote: true do %>
+                    <span class="glyphicon glyphicon-floppy-save"></span> Save
+                    <% end %>
                 </li>
-                
                 <li>
                     <select id="library-selection">
                         <option value="">No-Library (pure JS)</option>

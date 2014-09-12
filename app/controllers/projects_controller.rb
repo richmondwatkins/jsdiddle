@@ -7,6 +7,12 @@ class ProjectsController < ApplicationController
   def run
   end
 
+  def fork
+  end
+
+  def new
+  end
+  
   def create
 
     if user_signed_in?
@@ -32,7 +38,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by_params_and_version(params[:params], params[:version])
     respond_to do |format|
-      format.html # sho
+      format.html 
       format.json { render json: @project }
     end
   end
