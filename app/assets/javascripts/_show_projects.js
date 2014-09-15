@@ -41,11 +41,12 @@ function updateProject(e){
   var css = cssEditor.getValue();
   var name = $('#project-name').val();
   var library = $('#library-selection').val()
-
+  var project_id = $('#project_id').data('id');
+  console.log(project_id);
     $.ajax({
       type: "POST",
       url: "/versions/" +params,
-      data: { version: { name: name, html: html, javascript: js, css:css, library:library } }
+      data: { version: { name: name, html: html, javascript: js, css:css, library:library, project_id:project_id } }
     });
 
   e.preventDefault();

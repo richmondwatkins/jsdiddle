@@ -42,21 +42,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # def update
-  #   if user_signed_in?
-  #     @project = Project.create(project_params)
-  #     @project.user_id = current_user.id
-  #   else
-  #     @project = Project.create(project_params)
-  #     @project.user_id = 0
-  #   end
-  #   @project.params = params[:params]
-  #   @project.version = params[:version].to_i + 1
-  #   @project.save
-  #   flash[:notice] = "Your Diddle was successfully updated!"
-  #   render  :js => "window.location = '/projects/#{@project.params}/#{@project.version}'"
  
-  # end
 
 private
 

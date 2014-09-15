@@ -45,10 +45,12 @@ function updateProject(e){
   var css = cssEditor.getValue();
   var name = $('#project-name').val();
   var library = $('#library-selection').val()
+  var project_id = $('#project_id').data('id');
+
     $.ajax({
       type: "PATCH",
       url: "/versions",
-      data: { version: { name: name, html: html, javascript: js, css:css, library:library, version:version, params:params } }
+      data: { version: { name: name, html: html, javascript: js, css:css, library:library, version:version, params:params, project_id:project_id } }
     });
 
   e.preventDefault();

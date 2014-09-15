@@ -43,7 +43,7 @@ class VersionsController < ApplicationController
   private
 
   def update_params
-      params.require(:version).permit(:name, :html, :javascript, :css, :library, :version, :params)
+      params.require(:version).permit(:name, :html, :javascript, :css, :library, :version, :params, :project_id)
 
   end
 
