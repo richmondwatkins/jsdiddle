@@ -27,7 +27,7 @@ function loadIframes(data){
 
     $('#projects-container').append(iframe);
 
-    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
+    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"> '+data.library+'</script> \
       <style>'+data.css+'</style><body>'+data.html+'</body></html>');
 
     $('.run-js').click(runJS);
@@ -37,12 +37,13 @@ function loadIframes(data){
 
     $('#projects-container').append(iframe);
 
-    document.getElementById(data.id).contentWindow.document.write('<html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
+    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
       <style>'+data.css+'</style><body>'+data.html+'</body></html>');
   }
  }
 
  function runJS(){
+  console.log('hey');
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
 

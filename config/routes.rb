@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   resources :projects, :only => [:index, :create, :new]
 
   get 'user/:id/projects', :to => 'users#get_projects'
-  get 'projects/:params/:version', :to => 'projects#show'
-  post 'projects/:params/update/:version', :to => 'projects#update'
+  get ':params', :to => 'projects#show'
   get 'projects/run' => 'projects#run', as: :run_project
   get 'projects/fork' => 'projects#fork', as: :fork_project
+
+  get  ':params/:version', :to => 'versions#show'
+  post 'versions/:params', :to => 'versions#create'
+  patch 'versions', :to => 'versions#update'
 
 end

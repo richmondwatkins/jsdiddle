@@ -7,7 +7,7 @@ feature "Saving a Project" do
     # click_on ("Save")
     click_link_or_button("Save")
     # wait_for_ajax
-    expect(page).to have_content("Save")
+    expect(page).to have_content("Update")
     # expect(current_path).to eq projects_path
   end
 end
