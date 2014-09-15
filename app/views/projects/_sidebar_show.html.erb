@@ -92,6 +92,16 @@
 
                     </select>
                 </li>
+                <% if @project %>
+                    <li>
+                        <select id="version-selection">
+                        <option>Select Version</option>
+                      <% @project.versions.each do |version| %>
+                       <option  value= <%= version.params%>/<%= version.version%>>Version <%= version.version%> </option>
+                      <% end %>
+                      </select>
+                    </li>
+                <% end %>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->

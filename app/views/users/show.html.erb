@@ -9,11 +9,6 @@
 
 <div id="projects-container"></div>
 
-<% @user.projects.each do |project| %>
-  <% project.versions.each do |version| %>
-    <%= version.name%>
-  <%end%>
-<% end %>
-<%= javascript_include_tag "_profile.js" %> 
 
+<%= javascript_include_tag "_profile.js" %>
 

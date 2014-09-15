@@ -4,6 +4,8 @@
 $(document).ready(function () {
     queryProject();
     $('#update').click(updateProject);
+    $('#version-selection').on('change', changeVersion);
+
   });
 
  function queryProject(){
@@ -51,6 +53,11 @@ function updateProject(e){
 
   e.preventDefault();
 } 
+
+function changeVersion(){
+  var path = $('#version-selection').val();
+  window.location = path;
+}
 
 
 })();

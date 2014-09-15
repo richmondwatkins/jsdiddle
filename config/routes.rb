@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get ':params', :to => 'projects#show'
   get 'projects/run' => 'projects#run', as: :run_project
   get 'projects/fork' => 'projects#fork', as: :fork_project
+  get 'projects/:projectId', :to => 'projects#get_versions'
 
   get  ':params/:version', :to => 'versions#show'
   post 'versions/:params', :to => 'versions#create'

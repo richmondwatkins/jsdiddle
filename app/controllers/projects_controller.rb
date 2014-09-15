@@ -42,7 +42,14 @@ class ProjectsController < ApplicationController
     end
   end
 
- 
+
+  def get_versions
+    @project = Project.find(params[:projectId])
+    respond_to do |format|
+      format.html 
+      format.json { render json:@project.versions}
+    end
+  end 
 
 private
 
