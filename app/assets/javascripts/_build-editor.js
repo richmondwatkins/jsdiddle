@@ -71,12 +71,26 @@ function changeFontSize(){
   cssEditor.setFontSize(fontSize);
 }
 
-function exportGist(){
+function exportGist(e){
+  $('#gist-url').remove();
+
   var html = htmlEditor.getValue();
   var js = javascriptEditor.getValue();
   var css = cssEditor.getValue();
   // var name = $('#project-name').val();
   // var library = $('#library-selection').val()
+
+  if(js.length < 4 ){
+    js = "No Content";
+  }
+
+  if (css.length < 4){
+    css = "No Content";
+  }
+
+  if (html.length < 4){
+    html = "No Content";
+  }
 
   var gistData = {
               "description": "From jsdiddle",
@@ -105,10 +119,12 @@ function exportGist(){
       appendGistUrl(data.html_url);
       }
     });
+
+   e.preventDefault();
 }
 
 function appendGistUrl(url){
-  var $li = $('<li><a href="'+url+'">Gist Created!</a></li>');
+  var $li = $('<li id="gist-url"><a href="'+url+'" target="_blank">Gist Created!</a></li>');
 
   $('.sidebar-nav').append($li);
 }
