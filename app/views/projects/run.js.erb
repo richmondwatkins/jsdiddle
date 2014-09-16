@@ -10,10 +10,13 @@ buildCode();
   iframe.setAttribute("id", "results");  
 
   iframe.onload = function() {
-    document.getElementById('results').contentWindow.document.write('<!DOCTYPE html><html class="results-html">'+library+'<style>'+css+'</style><body>'+html+'<script>'+js+'</script></body></html>');
+    document.getElementById('results').contentWindow.document.write('<!DOCTYPE html><html class="results-html">'+library+'<style>'+css+'</style><body>'+html+'<script type="text/javascript">  '+js+' </script></body></html>');
   };
 
   $('#iframe-container').append(iframe);
 
   e.preventDefault();
  }
+
+ 
+

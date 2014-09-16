@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get 'projects/fork' => 'projects#fork', as: :fork_project
   get 'projects/:projectId', :to => 'projects#get_versions'
 
+  get '/versions/:params', :to => 'versions#get_versions'
   get  ':params/:version', :to => 'versions#show'
   post 'versions/:params', :to => 'versions#create'
   patch 'versions', :to => 'versions#update'
-
 end

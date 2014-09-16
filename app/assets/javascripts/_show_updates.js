@@ -4,6 +4,7 @@
 $(document).ready(function () {
     queryProject();
     $('#update').click(updateProject);
+    getVersions();
   });
 
  function queryProject(){
@@ -19,7 +20,6 @@ $(document).ready(function () {
         htmlEditor.setValue(data.html);
         javascriptEditor.setValue(data.javascript);
         cssEditor.setValue(data.css);
-
         loadIframe(data);
       }
     });
@@ -56,5 +56,35 @@ function updateProject(e){
   e.preventDefault();
 } 
 
+function getVersions(){
+  var path = window.location.pathname.split('/');
+  var params = path[1];
+  $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "/versions/"+params,
+      success: function(data){
+        appendVersions(data);
+      }
+    });
+}
+
+function appendVersions(versions){
+  var $select = $('<select id="version-selection"><option>Select Version</option></select>')
+
+  versions.forEach(function(v){
+    var $option = $('<option value=/'+v.params+'/'+v.version+'>Version '+v.version+'</option>');
+    $select.append($option);
+  });
+
+  $('#version-selector').append($select);
+
+  $('#version-selection').on('change', changeVersion);
+}
+
+function changeVersion(){
+  var path = $('#version-selection').val();
+  window.location = path;
+}
 
 })();

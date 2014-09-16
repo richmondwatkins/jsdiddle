@@ -17,7 +17,6 @@ class VersionsController < ApplicationController
 
   def show
     @version = Version.find_by_params_and_version(params[:params], params[:version])
-    puts @version
     respond_to do |format|
       format.html 
       format.json { render json: @version }
@@ -40,12 +39,23 @@ class VersionsController < ApplicationController
  
   end
 
+  def get_versions
+    @versions = []
+    Version.where(params: params[:params] ).find_in_batches do |version|
+      @versions.push(version)
+    end
+    @versions = @versions.flatten
+     respond_to do |format|
+      format.html 
+      format.json { render json: @versions }
+    end
+  end
+
 
   private
 
   def update_params
       params.require(:version).permit(:name, :html, :javascript, :css, :library, :version, :params, :project_id)
-
   end
 
 end
