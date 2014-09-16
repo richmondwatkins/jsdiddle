@@ -12,7 +12,7 @@ function init(){
     $('#theme-selection').on('change', changeTheme);
     $('#font-size').on('change', changeFontSize);
     createEditors();
-
+    $('#export-gist').click(exportGist);
     // $(window).on('beforeunload', checkLeave);
 }
 
@@ -71,7 +71,47 @@ function changeFontSize(){
   cssEditor.setFontSize(fontSize);
 }
 
+function exportGist(){
+  var html = htmlEditor.getValue();
+  var js = javascriptEditor.getValue();
+  var css = cssEditor.getValue();
+  // var name = $('#project-name').val();
+  // var library = $('#library-selection').val()
 
+  var gistData = {
+              "description": "From jsdiddle",
+              "public": true,
+              "files": {
+                "jsdiddle.html": {
+                  "content": html
+                },
+                "jsdiddle.js": {
+                  "content": js
+                },
+                "jsdiddle.css": {
+                  "content": css
+                }
+              }
+            };
+
+   $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: 'https://api.github.com/gists',
+      data: JSON.stringify(gistData),
+      dataType: "json",
+      crossDomain: !0,
+      success: function(data){
+      appendGistUrl(data.html_url);
+      }
+    });
+}
+
+function appendGistUrl(url){
+  var $li = $('<li><a href="'+url+'">Gist Created!</a></li>');
+
+  $('.sidebar-nav').append($li);
+}
 
 
 })();
