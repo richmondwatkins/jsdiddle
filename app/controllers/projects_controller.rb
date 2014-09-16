@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @project.params = params
     @project.save
     flash[:notice] = "Your Diddle was successfully saved!"
-    render  :js => "window.location = '#{@project.params}'"
+    render  :js => "window.location = '/#{@project.params}'"
   end
 
   def show
