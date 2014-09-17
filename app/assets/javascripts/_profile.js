@@ -25,12 +25,12 @@ function loadIframes(data){
   if(data.javascript.length > 4){
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+                        '<a href="/' + data.params + '">' + data.name + '</a><button  class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
                           '<span class="glyphicon glyphicon-play"></span>' +
-                        '</a>' +
+                        '</button>' +
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
-                            '<li class="active"><a href="#output" data-toggle="tab">Output</a></li>' +
+                            '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
                             '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
                             '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
                             '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
@@ -40,14 +40,10 @@ function loadIframes(data){
                                  
                               '</div>' +
                               '<div class="tab-pane css" id="css-'+data.params+'">' +
-                                  '<h1>Yellow</h1>' +
-                                  '<p>yellow yellow yellow yellow yellow</p>' +
                               '</div>' +
                               '<div class="tab-pane javascript" id="javascript-'+data.params+'">' +
-                                  '<h1>Green</h1>' +
-                                  '<p>green green green green green</p>' +
                               '</div>' +
-                              '<div class="tab-pane active" id="output" >' +
+                              '<div class="tab-pane active" id="output-'+data.params+'" >' +
                                   '<iframe class="project-iframe" , id="' + data.id + '"></iframe>' +
                               '</div>' +
                           '</div>' +
@@ -71,7 +67,7 @@ function loadIframes(data){
                         '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
-                            '<li class="active"><a href="#output" data-toggle="tab">Output</a></li>' +
+                            '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
                             '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
                             '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
                             '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
@@ -83,7 +79,7 @@ function loadIframes(data){
                               '</div>' +
                               '<div class="tab-pane javascript" id="javascript-'+data.params+'">' +
                               '</div>' +
-                              '<div class="tab-pane active" id="output" >' +
+                              '<div class="tab-pane active" id="output-'+data.params+'" >' +
                                   '<iframe class="project-iframe" , id="' + data.id + '"></iframe>' +
                               '</div>' +
                           '</div>' +
@@ -108,12 +104,11 @@ function loadIframes(data){
  }
 
  function runJS(e){
-  console.log('hey');
+  console.log(this);
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
-
-  document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
-
+  console.log(js);
+  var doc = document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
   e.preventDefault();
  }
 
@@ -129,8 +124,7 @@ function loadIframes(data){
                     aceEditor.session.setUseSoftTabs(false)               
                     return aceEditor;
                   })();
-                  console.log(data.html);
-                  console.log(data.css);
+                
   profileHtmlEditor.setValue(data.html);
 
    profileCssEditor = (function() {
