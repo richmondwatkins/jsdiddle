@@ -4,7 +4,6 @@ $(document).ready(init);
 
 function init(){
   getUserProjects();
-
 }
 
 function getUserProjects(){
@@ -26,9 +25,9 @@ function loadIframes(data){
   if(data.javascript.length > 4){
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><button  class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js-'+data.params+'" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
                           '<span class="glyphicon glyphicon-play"></span>' +
-                        '</button>' +
+                        '</a>' +
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
@@ -58,8 +57,8 @@ function loadIframes(data){
     document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"> '+data.library+'</script> \
       <style>'+data.css+'</style><body>'+data.html+'</body></html>');
 
-    $('.run-js').click(runJS);
     
+    $('.run-js-'+data.params+'').click(runJS);
 
 
   }else{
@@ -105,10 +104,8 @@ function loadIframes(data){
  }
 
  function runJS(e){
-  console.log(this);
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
-  console.log(js);
   var doc = document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
   e.preventDefault();
  }
