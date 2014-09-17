@@ -2,43 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.text-area, #results {
-    height: 100%;
-    width: 100%;
-   // -webkit-box-sizing: border-box; 
-   //  -moz-box-sizing: border-box;  
-   //  box-sizing: border-box;        
-     // resize: none;
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+
+h1, h2, h3, h4, h5, p, a {
+  font-family: 'Inconsolata';
 }
 
- #upper-left-editor, #lower-left-editor, #upper-right-editor { 
-    position: relative;  
-    height: 100%;
-    width: 100%;
-  }
+
+//======= Profile ======
+
 
 #projects-container{
     text-align: center;
  }
 
 .project-div {
-  padding: 10px;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 10px;
-  background-color: #99CCFF;
-  text-align: center;
-  border-radius: 5px;
-  width: 20%;
+  height: 20em;
+  margin: 4em;
 
   .project-iframe {
     height: 100%; 
-    width: 100%;
+    width: 80%;
     background-color: white;
     border-radius: 5px;
   }
 
+  div{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    a{
+      color: black;
+      font-size: 2em;
+      margin-right: 1em;
+    }
+  }
+
 }
+
+
+
+//========= ace editor ======
 
 .window_label {
   border: solid 1px #F1F1F1;
@@ -60,6 +64,18 @@
   position: absolute;
   right: 0px;
 }
+
+#results {
+    height: 100%;
+    width: 100%;
+
+}
+
+ #upper-left-editor, #lower-left-editor, #upper-right-editor { 
+    position: relative;  
+    height: 100%;
+    width: 100%;
+  }
 
 #project-name {
   border-radius: 5px;

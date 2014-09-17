@@ -1,31 +1,32 @@
 (function(){
 
-$(document).ready(init);
+  $(document).ready(init);
 
-function init(){
-  getUserProjects();
-}
+  function init(){
+    getAllProjects();
+  }
 
-function getUserProjects(){
-  var id = $('#user-id').data('id');
-  $.ajax({
+
+  function getAllProjects(){
+    $.ajax({
       type: "GET",
       dataType: "json",
-      url: "/user/" + id + "/projects",
+      url: "/projects/get_all",
       success: function(data){
-        data.forEach(function(p){
-          loadIframes(p);
+        data.forEach(function(d){
+          loadIframes(d);
         });
       }
     });
-}
+  }
 
-function loadIframes(data){
+
+  function loadIframes(data){
   if(data.javascript.length > 4){
-    var iframe = $('<div class="project-div"><div><a href="/projects/'+data.params+'/'+data.version+'">'+data.name+'</a><a href="#" class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'"><span class="glyphicon glyphicon-play"></span></a></div> \
+    var iframe = $('<div class="project-div"><div><button class="run-js" data-javascript="'+data.javascript+'" data-id="'+data.id+'">Run JS</button><a href="/projects/'+data.params+'/'+data.version+'">'+data.name+'</a></div> \
       <iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
 
-    $('#projects-container').append(iframe);
+    $('#all-projects-container').append(iframe);
 
     document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"> '+data.library+'</script> \
       <style>'+data.css+'</style><body>'+data.html+'</body></html>');
@@ -35,22 +36,25 @@ function loadIframes(data){
   }else{
     var iframe = $('<div class="project-div"><div><a href="/'+data.params+'">'+data.name+'</a></div><iframe class="project-iframe", id="'+data.id+'"></iframe></div>');
 
-    $('#projects-container').append(iframe);
+    $('#all-projects-container').append(iframe);
 
     document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script></script> \
       <style>'+data.css+'</style><body>'+data.html+'</body></html>');
   }
  }
 
- function runJS(e){
-  console.log('hey');
+ function runJS(){
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
 
   document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
 
-  e.preventDefault();
  }
 
 
 })();
+
+
+
+
+
