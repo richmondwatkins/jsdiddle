@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915162846) do
+ActiveRecord::Schema.define(version: 20140916184612) do
+
+  create_table "forks", force: true do |t|
+    t.string   "name"
+    t.string   "html"
+    t.string   "css"
+    t.string   "javascript"
+    t.integer  "user_id"
+    t.string   "params"
+    t.string   "library"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"

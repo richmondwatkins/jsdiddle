@@ -25,7 +25,7 @@ function loadIframes(data){
   if(data.javascript.length > 4){
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/projects/' + data.params + '/' + data.version + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
                           '<span class="glyphicon glyphicon-play"></span>' +
                         '</a>' +
                         '<div id="content">'+
@@ -68,7 +68,7 @@ function loadIframes(data){
   }else{
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/projects/' + data.params + '/' + data.version + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
+                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output" data-toggle="tab">Output</a></li>' +
@@ -117,33 +117,39 @@ function loadIframes(data){
   e.preventDefault();
  }
 
+ var profileHtmlEditor;
+ var profilecCssEditor;
+ var profileJavascriptEditor;
  function loadEditors(data){
-  var htmlEditor = (function() {
+   profileHtmlEditor = (function() {
                     var aceEditor = ace.edit("html-"+data.params);
                     aceEditor.setTheme("ace/theme/clouds");
                     aceEditor.getSession().setMode("ace/mode/html");
-                    aceEditor.setReadOnly(true);                    
+                    // aceEditor.setReadOnly(true);    
+                    aceEditor.session.setUseSoftTabs(false)               
                     return aceEditor;
                   })();
-  htmlEditor.setValue(data.html);
+                  console.log(data.html);
+                  console.log(data.css);
+  profileHtmlEditor.setValue(data.html);
 
-  var cssEditor = (function() {
+   profileCssEditor = (function() {
                     var aceEditor = ace.edit("css-"+data.params);
                     aceEditor.setTheme("ace/theme/clouds");
                     aceEditor.getSession().setMode("ace/mode/html");
-                    aceEditor.setReadOnly(true);                    
+                    // aceEditor.setReadOnly(true);                    
                     return aceEditor;
                   })();
-  cssEditor.setValue(data.css);
+  profileCssEditor.setValue(data.css);
 
-  var javascriptEditor = (function() {
+  profileJavascriptEditor = (function() {
                     var aceEditor = ace.edit("javascript-"+data.params);
                     aceEditor.setTheme("ace/theme/clouds");
                     aceEditor.getSession().setMode("ace/mode/html");
                     aceEditor.setReadOnly(true);
                     return aceEditor;
                   })();
-  javascriptEditor.setValue(data.javascript);
+  profileJavascriptEditor.setValue(data.javascript);
 }
 
 })();
