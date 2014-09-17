@@ -22,6 +22,7 @@ function getUserProjects(){
 }
 
 function loadIframes(data){
+  data.javascript = data.javascript.replace(/"/g, "'");
   if(data.javascript.length > 4){
     var iframe = $('<div class="project-div">' +
                       '<div>' +
