@@ -35,6 +35,18 @@ h1, h2, h3, h4, h5, p, a {
       height: 300px;
       width: 100%;
 
+      ul{
+        
+        li {
+        
+          a {
+            font-size: 2em;
+          }
+
+        }
+
+      }
+
       #my-tab-content {
         height: 80%;
         width: 100%;

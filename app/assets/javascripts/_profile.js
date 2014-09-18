@@ -118,7 +118,7 @@ function loadIframes(data){
                     var aceEditor = ace.edit("html-"+data.params);
                     aceEditor.setTheme("ace/theme/clouds");
                     aceEditor.getSession().setMode("ace/mode/html");
-                    // aceEditor.setReadOnly(true);    
+                    aceEditor.setReadOnly(true);    
                     aceEditor.session.setUseSoftTabs(false)               
                     return aceEditor;
                   })();
@@ -129,7 +129,7 @@ function loadIframes(data){
                     var aceEditor = ace.edit("css-"+data.params);
                     aceEditor.setTheme("ace/theme/clouds");
                     aceEditor.getSession().setMode("ace/mode/html");
-                    // aceEditor.setReadOnly(true);                    
+                    aceEditor.setReadOnly(true);                    
                     return aceEditor;
                   })();
   profileCssEditor.setValue(data.css);
