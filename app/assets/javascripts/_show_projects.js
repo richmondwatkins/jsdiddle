@@ -5,10 +5,10 @@ $(document).ready(function () {
     queryProject();
     $('#update').click(updateProject);
     $('#version-selection').on('change', changeVersion);
-
   });
 
  function queryProject(){
+  console.log('run');
   var path = window.location.pathname.split('/');
   var params = path[1];
   $.ajax({
