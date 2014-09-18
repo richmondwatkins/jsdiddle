@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def show_all
+    @projects = Project.all
     # @projects = Project.order('id desc').page(params[:page]).per(2)
   #   @projects = Kaminari.paginate_array(Project.first(2)).page(params[:page])
   end

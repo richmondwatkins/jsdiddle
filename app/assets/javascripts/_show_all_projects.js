@@ -7,7 +7,7 @@
     $('#view-more').click(getAllProjects);
 
     window.onscroll = function(event){
-      if ($(window).scrollTop() + $(window).height() == $(document).height()){
+      if ( $(window).scrollTop() + $(window).height() === $(document).height() ){
         getAllProjects();
       }
     }
@@ -20,7 +20,6 @@
       dataType: "json",
       url: "/projects/get_all/" + page,
       success: function(data){
-        console.log(data);
         data.forEach(function(d){
           loadIframes(d);
         });
@@ -59,7 +58,8 @@
                           '</div>' +
                         '</div>' +
                       '</div>' +
-                  '</div>'
+                  '</div>' 
+
   );
 
     $('#all-projects-container').append(iframe);
@@ -113,18 +113,19 @@
 
  }
 
- function runJS(){
+ function runJS(e){
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
 
   document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
 
+  e.preventDefault();
  }
 
  var profileHtmlEditor;
  var profilecCssEditor;
  var profileJavascriptEditor;
- 
+
  function loadEditors(data){
    profileHtmlEditor = (function() {
                     var aceEditor = ace.edit("html-"+data.params);
