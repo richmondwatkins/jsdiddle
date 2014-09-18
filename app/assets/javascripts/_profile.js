@@ -4,18 +4,12 @@ $(document).ready(init);
 
 function init(){
   getUserProjects();
-
- window.onscroll = function(event){
-    if ($(window).scrollTop() + $(window).height() == $(document).height()){
-      getUserProjects();
-    }
-  }
 }
 
 function getUserProjects(){
   var id = $('#user-id').data('id');
 
-
+  
   $.ajax({
       type: "GET",
       dataType: "json",
