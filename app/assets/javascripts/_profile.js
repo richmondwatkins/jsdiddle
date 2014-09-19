@@ -6,7 +6,7 @@ function init(){
   getUserProjects();
 
   window.onscroll = function(event){
-      if ( $(window).scrollTop() + $(window).height() === $(document).height() ){
+      if ( $(window).scrollTop() + $(window).height() >= $(document).height() -100 ){
         getUserProjects();
       }
     }
@@ -107,8 +107,7 @@ function loadIframes(data){
                                                                   '</html>');
   }
 
-        loadEditors(data);
-
+    loadEditors(data);
 
  }
 

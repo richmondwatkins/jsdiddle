@@ -21,9 +21,16 @@ class ProjectsController < ApplicationController
 
   def get_all
     @projects = Project.order('id desc').page(params[:page]).per(4)
+    @allProjects = []
+    @projects.each do |project|
+      @project = Hash.new
+      @project["owner"] = project.user
+      @project["project"] = project
+      @allProjects << @project
+    end
      respond_to do |format|
       format.html 
-      format.json { render json: @projects }
+      format.json { render json: @allProjects}
     end
   end
   

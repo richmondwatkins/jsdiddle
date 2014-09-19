@@ -4,7 +4,12 @@
 
   function init(){
     getAllProjects();
-    $('#view-more').click(getAllProjects);
+
+    window.onscroll = function(event){
+      if ( $(window).scrollTop() + $(window).height() >= $(document).height() - 100 ){
+        getAllProjects();
+      }
+    }
   }
 
   var page = 1;
@@ -14,6 +19,7 @@
       dataType: "json",
       url: "/projects/get_all/" + page,
       success: function(data){
+        console.log(data);
         data.forEach(function(d){
           loadIframes(d);
         });
@@ -26,28 +32,27 @@
 
 
   function loadIframes(data){
-  data.javascript = data.javascript.replace(/"/g, "'");
-  // if(data.javascript.length > 4){
-  // }
+    data.project.javascript = data.project.javascript.replace(/"/g, "'");
+
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/' + data.params + '"class="run-'+data.params+'" id="project-link-'+data.params+'">' + data.name + '</a>'+
+                        '<a href="/' + data.project.params + '"class="run-'+data.project.params+'" id="project-link-'+data.project.params+'">' + data.project.name + '</a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
-                            '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
-                            '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
-                            '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
-                            '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
+                            '<li class="active"><a href="#output-'+data.project.params+'" data-toggle="tab">Output</a></li>' +
+                            '<li><a href="#html-'+data.project.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
+                            '<li><a href="#css-'+data.project.params+'" data-toggle="tab">CSS</a></li>'+
+                            '<li><a href="#javascript-'+data.project.params+'" data-toggle="tab">Javascript</a></li>' +
                          '</ul>' +
                            '<div id="my-tab-content" class="tab-content">' +
-                              '<div class="tab-pane html" id="html-'+data.params+'">' +                            
+                              '<div class="tab-pane html" id="html-'+data.project.params+'">' +                            
                               '</div>' +
-                              '<div class="tab-pane css" id="css-'+data.params+'">' +
+                              '<div class="tab-pane css" id="css-'+data.project.params+'">' +
                               '</div>' +
-                              '<div class="tab-pane javascript" id="javascript-'+data.params+'">' +
+                              '<div class="tab-pane javascript" id="javascript-'+data.project.params+'">' +
                               '</div>' +
-                              '<div class="tab-pane active" id="output-'+data.params+'" >' +
-                                  '<iframe class="project-iframe" , id="' + data.id + '"></iframe>' +
+                              '<div class="tab-pane active" id="output-'+data.project.params+'" >' +
+                                  '<iframe class="project-iframe" , id="' + data.project.id + '"></iframe>' +
                               '</div>' +
                           '</div>' +
                         '</div>' +
@@ -58,25 +63,25 @@
 
     $('#all-projects-container').append(iframe);
 
-    if(data.javascript.length > 4){
+    if(data.project.javascript.length > 4){
 
-      $('#project-link-'+data.params).append('<a href="#" class="run-js-'+data.params+' run" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+      $('#project-link-'+data.project.params).append('<a href="#" class="run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '">' +
                                 '<span class="glyphicon glyphicon-play"></span>' +
                                 '</a>');
 
-      $('.run-js-'+data.params+'').click(runJS);
+      $('.run-js-'+data.project.params+'').click(runJS);
     }
 
 
-    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html>' +
+    document.getElementById(data.project.id).contentWindow.document.write('<!DOCTYPE html>' +
                                                                   '<html class="results-html">' +
-                                                                    ''+data.library+''+ 
-                                                                    '<style>'+data.css+'</style>'+
-                                                                    '<body>'+data.html+'</body>' +
+                                                                    ''+data.project.library+''+ 
+                                                                    '<style>'+data.project.css+'</style>'+
+                                                                    '<body>'+data.project.html+'</body>' +
                                                                   '</html>');
 
 
-        loadEditors(data);
+    loadEditors(data.project);
 
  }
 
@@ -88,6 +93,7 @@
   document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
 
   e.preventDefault();
+
  }
 
  var profileHtmlEditor;
