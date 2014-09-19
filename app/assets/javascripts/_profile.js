@@ -4,20 +4,27 @@ $(document).ready(init);
 
 function init(){
   getUserProjects();
+
+  window.onscroll = function(event){
+      if ( $(window).scrollTop() + $(window).height() === $(document).height() ){
+        getUserProjects();
+      }
+    }
 }
 
+var page = 1;
 function getUserProjects(){
-  var id = $('#user-id').data('id');
-
-  
+  var id = $('#user-id').data('id');  
   $.ajax({
       type: "GET",
       dataType: "json",
-      url: "/user/" + id + "/projects",
+      url: "/user/" + id + "/projects/" + page,
       success: function(data){
         data.forEach(function(p){
           loadIframes(p);
         });
+
+        page += 1;
       }
     });
 }

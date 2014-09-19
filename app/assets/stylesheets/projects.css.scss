@@ -121,3 +121,20 @@ h1, h2, h3, h4, h5, p, a {
 .glyphicon {
   padding-right: 1em;
 }
+
+.glyphicon:hover {
+  color: #A9A9A9;
+}
+
+
+
+//=========== All Projects ==============
+
+.run > span.glyphicon {
+  font-size: 0.5em;
+  padding-left: 1em;
+}
+
+.run > span.glyphicon:hover {
+  color: #A9A9A9;
+}

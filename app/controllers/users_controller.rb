@@ -12,9 +12,10 @@ class UsersController < ApplicationController
 
   def get_projects
     @user = User.find(params[:id])
+    @projects = @user.projects.order('id desc').page(params[:page]).per(4)
     respond_to do |format|
       format.html 
-      format.json { render json:@user.projects}
+      format.json { render json:@projects}
     end
   end
 

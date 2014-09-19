@@ -5,12 +5,6 @@
   function init(){
     getAllProjects();
     $('#view-more').click(getAllProjects);
-
-    window.onscroll = function(event){
-      if ( $(window).scrollTop() + $(window).height() === $(document).height() ){
-        getAllProjects();
-      }
-    }
   }
 
   var page = 1;
@@ -29,52 +23,15 @@
   }
 
 
+
+
   function loadIframes(data){
   data.javascript = data.javascript.replace(/"/g, "'");
-  if(data.javascript.length > 4){
+  // if(data.javascript.length > 4){
+  // }
     var iframe = $('<div class="project-div">' +
                       '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js-'+data.params+'" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
-                          '<span class="glyphicon glyphicon-play"></span>' +
-                        '</a>' +
-                        '<div id="content">'+
-                          '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
-                            '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
-                            '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
-                            '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
-                            '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
-                         '</ul>' +
-                           '<div id="my-tab-content" class="tab-content">' +
-                              '<div class="tab-pane html" id="html-'+data.params+'">' +
-                                 
-                              '</div>' +
-                              '<div class="tab-pane css" id="css-'+data.params+'">' +
-                              '</div>' +
-                              '<div class="tab-pane javascript" id="javascript-'+data.params+'">' +
-                              '</div>' +
-                              '<div class="tab-pane active" id="output-'+data.params+'" >' +
-                                  '<iframe class="project-iframe" , id="' + data.id + '"></iframe>' +
-                              '</div>' +
-                          '</div>' +
-                        '</div>' +
-                      '</div>' +
-                  '</div>' 
-
-  );
-
-    $('#all-projects-container').append(iframe);
-
-    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"> '+data.library+'</script> \
-      <style>'+data.css+'</style><body>'+data.html+'</body></html>');
-
-    
-    $('.run-js-'+data.params+'').click(runJS);
-
-
-  }else{
-    var iframe = $('<div class="project-div">' +
-                      '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
+                        '<a href="/' + data.params + '"class="run-'+data.params+'" id="project-link-'+data.params+'">' + data.name + '</a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
@@ -97,21 +54,32 @@
                       '</div>' +
                   '</div>'
   );
+    
 
     $('#all-projects-container').append(iframe);
 
+    if(data.javascript.length > 4){
+
+      $('#project-link-'+data.params).append('<a href="#" class="run-js-'+data.params+' run" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+                                '<span class="glyphicon glyphicon-play"></span>' +
+                                '</a>');
+
+      $('.run-js-'+data.params+'').click(runJS);
+    }
+
+
     document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html>' +
                                                                   '<html class="results-html">' +
-                                                                    '<script src="'+data.library+'"></script>'+ 
+                                                                    ''+data.library+''+ 
                                                                     '<style>'+data.css+'</style>'+
                                                                     '<body>'+data.html+'</body>' +
                                                                   '</html>');
-  }
+
 
         loadEditors(data);
 
-
  }
+
 
  function runJS(e){
   var js = $(this).data('javascript');
