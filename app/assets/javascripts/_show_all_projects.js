@@ -63,14 +63,14 @@
 
     $('#all-projects-container').append(iframe);
 
-    if(data.project.javascript.length > 4){
+    // if(data.project.javascript.length > 4){
 
-      $('#project-link-'+data.project.params).append('<a href="#" class="run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '">' +
-                                               '<span class="glyphicon glyphicon-play"></span>' +
-                                              '</a>');
+    //   $('#project-link-'+data.project.params).append('<a href="#" class="run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '">' +
+    //                                            '<span class="glyphicon glyphicon-play"></span>' +
+    //                                           '</a>');
 
-      $('.run-js-'+data.project.params+'').click(runJS);
-    }
+    //   $('.run-js-'+data.project.params+'').click(runJS);
+    // }
 
 
 

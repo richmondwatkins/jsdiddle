@@ -82,6 +82,7 @@ function loadIframes(data){
     var iframe = $('<div class="project-div">' +
                       '<div>' +
                         '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
+                        '<a href="#"><span class="glyphicon glyphicon-trash"></span></a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
