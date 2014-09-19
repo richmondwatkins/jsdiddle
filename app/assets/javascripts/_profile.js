@@ -33,9 +33,9 @@ function getUserProjects(){
     data.javascript = data.javascript.replace(/"/g, "'");
 
     var iframe = $('<div class="project-div" id="project-'+data.params+'">' +
-                      '<div>' +
+                      '<div class="profile-sub-menu">' +
                         '<a href="/' + data.params + '"class="run-'+data.params+'" id="project-link-'+data.params+'">' + data.name + '</a>'+
-                        '<a href="#" id=trash-'+data.params+' data-id="'+data.id+'"> ' +
+                        '<a href="#" class= "profile-icon" id=trash-'+data.params+' data-id="'+data.id+'"> ' +
                           '<span class="glyphicon glyphicon-trash"></span>' +
                         '</a>'+
                         '<div id="content">'+
@@ -65,8 +65,8 @@ function getUserProjects(){
     $('#projects-container').append(iframe);
 
     if(data.javascript.length > 4){
-      $('#project-link-'+data.params).append('<a href="#" class="run-js-'+data.params+' run" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
-                                               '<span class="glyphicon glyphicon-play"></span>' +
+      $('#project-link-'+data.params).after('<a href="#" class="profile-icon" class="run-js-'+data.params+' run" >' +
+                                               '<span class="glyphicon glyphicon-play run-js-'+data.params+' run" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></span>' +
                                               '</a>');
       $('.run-js-'+data.params+'').click(runJS);
     }

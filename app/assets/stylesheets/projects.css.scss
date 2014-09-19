@@ -22,13 +22,17 @@ h1, h2, h3, h4, h5, p, a {
   margin-bottom: 125px;
   display: inline-block;
   
-  div{
+  div.profile-sub-menu{
     text-align: left;
     height: 400px;
     a{
       color: black;
       font-size: 2em;
       margin-right: 1em;
+    }
+
+    a.profile-icon > span.glyphicon{
+      color: red;
     }
 
     #content {
@@ -118,8 +122,8 @@ h1, h2, h3, h4, h5, p, a {
   border-color: #222222;
 }
 
-.glyphicon {
-  font-size: 0.5em;
+li > a > span.glyphicon {
+    padding-right: 1em;
 }
 
 .glyphicon:hover {
