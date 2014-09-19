@@ -31,7 +31,7 @@ $(document).ready(function () {
     $('iframe').remove();
     var iframe = $('<iframe id="results"></iframe>');
     $('#iframe-container').append(iframe);
-    document.getElementById('results').contentWindow.document.write('<!DOCTYPE html><html><script>'+data.library+'</script><style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
+    document.getElementById('results').contentWindow.document.write('<!DOCTYPE html><html>'+data.library+'<style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
  }
 
 

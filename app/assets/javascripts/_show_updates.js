@@ -70,7 +70,11 @@ function getVersions(){
 }
 
 function appendVersions(versions){
-  var $select = $('<select id="version-selection"><option>Select Version</option></select>')
+  var params = versions[0].params;
+  var $select = $('<select id="version-selection">'+
+                    '<option>Select Version</option>' +
+                    '<option value="/'+params+'">Original</option>' +
+                  '</select>')
 
   versions.forEach(function(v){
     var $option = $('<option value=/'+v.params+'/'+v.version+'>Version '+v.version+'</option>');
