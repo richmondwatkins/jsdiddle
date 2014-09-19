@@ -19,7 +19,6 @@
       dataType: "json",
       url: "/projects/get_all/" + page,
       success: function(data){
-        console.log(data);
         data.forEach(function(d){
           loadIframes(d);
         });
@@ -42,7 +41,7 @@
                             '<li class="active"><a href="#output-'+data.project.params+'" data-toggle="tab">Output</a></li>' +
                             '<li><a href="#html-'+data.project.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
                             '<li><a href="#css-'+data.project.params+'" data-toggle="tab">CSS</a></li>'+
-                            '<li><a href="#javascript-'+data.project.params+'" data-toggle="tab">Javascript</a></li>' +
+                            '<li><a href="#javascript-'+data.project.params+'" data-toggle="tab" id="js-link-'+data.project.params+'" data-javascript=" ">Javascript</a></li>' +
                          '</ul>' +
                            '<div id="my-tab-content" class="tab-content">' +
                               '<div class="tab-pane html" id="html-'+data.project.params+'">' +                            
@@ -57,6 +56,7 @@
                           '</div>' +
                         '</div>' +
                       '</div>' +
+                    '<a href="/users/'+data.owner.id+'">'+data.owner.name+'</a>' +
                   '</div>'
   );
     
@@ -64,12 +64,9 @@
     $('#all-projects-container').append(iframe);
 
     if(data.project.javascript.length > 4){
-
-      $('#project-link-'+data.project.params).append('<a href="#" class="run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '">' +
-                                '<span class="glyphicon glyphicon-play"></span>' +
-                                '</a>');
-
-      $('.run-js-'+data.project.params+'').click(runJS);
+      $('#js-link-'+data.project.params).data('javascript');
+      $('#js-link-'+data.project.params).data('javascript', data.project.javascript);
+      $('#js-link-'+data.project.params).click(runJS);
     }
 
 
@@ -77,8 +74,14 @@
                                                                   '<html class="results-html">' +
                                                                     ''+data.project.library+''+ 
                                                                     '<style>'+data.project.css+'</style>'+
-                                                                    '<body>'+data.project.html+'</body>' +
+                                                                    '<body>' 
+                                                                      +data.project.html+
+                                                                      '<script>' 
+                                                                          +data.project.javascript+
+                                                                      '</script>'+
+                                                                    '</body>' +
                                                                   '</html>');
+
 
 
     loadEditors(data.project);
