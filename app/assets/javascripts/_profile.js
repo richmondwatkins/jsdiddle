@@ -63,9 +63,17 @@ function loadIframes(data){
 
     $('#projects-container').append(iframe);
 
-    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html><html class="results-html"> '+data.library+'</script> \
-      <style>'+data.css+'</style><body>'+data.html+'</body></html>');
-
+    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html>' +
+                                                                  '<html class="results-html">' +
+                                                                    data.library+ 
+                                                                    '<style>'+data.css+'</style>'+
+                                                                    '<body>'+data.html+
+                                                                     '<script>' 
+                                                                       +data.javascript+
+                                                                      '</script>'+
+                                                                    '</body>' +
+                                                                  '</html>');
+  
     
     $('.run-js-'+data.params+'').click(runJS);
 

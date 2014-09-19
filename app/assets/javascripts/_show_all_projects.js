@@ -64,15 +64,19 @@
     $('#all-projects-container').append(iframe);
 
     if(data.project.javascript.length > 4){
-      $('#js-link-'+data.project.params).data('javascript');
-      $('#js-link-'+data.project.params).data('javascript', data.project.javascript);
-      $('#js-link-'+data.project.params).click(runJS);
+
+      $('#project-link-'+data.project.params).append('<a href="#" class="run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '">' +
+                                               '<span class="glyphicon glyphicon-play"></span>' +
+                                              '</a>');
+
+      $('.run-js-'+data.project.params+'').click(runJS);
     }
+
 
 
     document.getElementById(data.project.id).contentWindow.document.write('<!DOCTYPE html>' +
                                                                   '<html class="results-html">' +
-                                                                    ''+data.project.library+''+ 
+                                                                    data.project.library+ 
                                                                     '<style>'+data.project.css+'</style>'+
                                                                     '<body>' 
                                                                       +data.project.html+
