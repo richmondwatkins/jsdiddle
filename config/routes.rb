@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'projects#index'
   devise_for :users
   resources :users
-  resources :projects, :only => [:index, :create, :new]
+  resources :projects, :only => [:index, :create, :new, :destroy]
 
 
 # devise_for :users, :controllers => { registrations: 'registrations' }

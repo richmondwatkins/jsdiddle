@@ -13,10 +13,16 @@ class ProjectsController < ApplicationController
   def new
   end
 
+  def destroy
+    @project = Project.destroy(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @project}
+    end
+  end
+
   def show_all
     @projects = Project.all
-    # @projects = Project.order('id desc').page(params[:page]).per(2)
-  #   @projects = Kaminari.paginate_array(Project.first(2)).page(params[:page])
   end
 
   def get_all

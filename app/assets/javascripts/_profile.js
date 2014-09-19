@@ -29,66 +29,21 @@ function getUserProjects(){
     });
 }
 
-function loadIframes(data){
-  data.javascript = data.javascript.replace(/"/g, "'");
-  if(data.javascript.length > 4){
-    var iframe = $('<div class="project-div">' +
+ function loadIframes(data){
+    data.javascript = data.javascript.replace(/"/g, "'");
+
+    var iframe = $('<div class="project-div" id="project-'+data.params+'">' +
                       '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js-'+data.params+'" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
-                          '<span class="glyphicon glyphicon-play"></span>' +
-                        '</a>' +
+                        '<a href="/' + data.params + '"class="run-'+data.params+'" id="project-link-'+data.params+'">' + data.name + '</a>'+
+                        '<a href="#" id=trash-'+data.params+' data-id="'+data.id+'"> ' +
+                          '<span class="glyphicon glyphicon-trash"></span>' +
+                        '</a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
                             '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
                             '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
-                            '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
-                         '</ul>' +
-                           '<div id="my-tab-content" class="tab-content">' +
-                              '<div class="tab-pane html" id="html-'+data.params+'">' +
-                                 
-                              '</div>' +
-                              '<div class="tab-pane css" id="css-'+data.params+'">' +
-                              '</div>' +
-                              '<div class="tab-pane javascript" id="javascript-'+data.params+'">' +
-                              '</div>' +
-                              '<div class="tab-pane active" id="output-'+data.params+'" >' +
-                                  '<iframe class="project-iframe" , id="' + data.id + '"></iframe>' +
-                              '</div>' +
-                          '</div>' +
-                        '</div>' +
-                      '</div>' +
-                  '</div>'
-  );
-
-    $('#projects-container').append(iframe);
-
-    document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html>' +
-                                                                  '<html class="results-html">' +
-                                                                    data.library+ 
-                                                                    '<style>'+data.css+'</style>'+
-                                                                    '<body>'+data.html+
-                                                                     '<script>' 
-                                                                       +data.javascript+
-                                                                      '</script>'+
-                                                                    '</body>' +
-                                                                  '</html>');
-  
-    
-    $('.run-js-'+data.params+'').click(runJS);
-
-
-  }else{
-    var iframe = $('<div class="project-div">' +
-                      '<div>' +
-                        '<a href="/' + data.params + '">' + data.name + '</a><a href="#" class="run-js" data-javascript="' + data.javascript + '" data-id="' + data.id + '"></a>' +
-                        '<a href="#"><span class="glyphicon glyphicon-trash"></span></a>'+
-                        '<div id="content">'+
-                          '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
-                            '<li class="active"><a href="#output-'+data.params+'" data-toggle="tab">Output</a></li>' +
-                            '<li><a href="#html-'+data.params+'" id="html-click-handler" data-toggle="tab">HTML</a></li>' +
-                            '<li><a href="#css-'+data.params+'" data-toggle="tab">CSS</a></li>'+
-                            '<li><a href="#javascript-'+data.params+'" data-toggle="tab">Javascript</a></li>' +
+                            '<li><a href="#javascript-'+data.params+'" data-toggle="tab" id="js-link-'+data.params+'" data-javascript=" ">Javascript</a></li>' +
                          '</ul>' +
                            '<div id="my-tab-content" class="tab-content">' +
                               '<div class="tab-pane html" id="html-'+data.params+'">' +                            
@@ -105,16 +60,29 @@ function loadIframes(data){
                       '</div>' +
                   '</div>'
   );
+    
 
     $('#projects-container').append(iframe);
 
+    if(data.javascript.length > 4){
+      $('#project-link-'+data.params).append('<a href="#" class="run-js-'+data.params+' run" data-javascript="' + data.javascript + '" data-id="' + data.id + '">' +
+                                               '<span class="glyphicon glyphicon-play"></span>' +
+                                              '</a>');
+      $('.run-js-'+data.params+'').click(runJS);
+    }
+
+      $('#trash-'+data.params).click(destroyProject);
     document.getElementById(data.id).contentWindow.document.write('<!DOCTYPE html>' +
                                                                   '<html class="results-html">' +
-                                                                    '<script src="'+data.library+'"></script>'+ 
+                                                                    data.library+ 
                                                                     '<style>'+data.css+'</style>'+
-                                                                    '<body>'+data.html+'</body>' +
+                                                                    '<body>' 
+                                                                      +data.html+
+                                                                      '<script>' 
+                                                                          +data.javascript+
+                                                                      '</script>'+
+                                                                    '</body>' +
                                                                   '</html>');
-  }
 
     loadEditors(data);
 
@@ -124,6 +92,20 @@ function loadIframes(data){
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
   var doc = document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
+  e.preventDefault();
+ }
+
+ function destroyProject(e){
+  var projectId = $(this).data('id');
+  console.log(projectId);
+  $.ajax({
+      type: "DELETE",
+      dataType: "json",
+      url: "/projects/" + projectId,
+      success: function(data){
+       $('#project-'+data.params).remove();
+      }
+    });
   e.preventDefault();
  }
 
