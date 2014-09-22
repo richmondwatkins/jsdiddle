@@ -26,7 +26,7 @@ function checkForOwner(project){
         }else {
           isOwner = false;
         }
-        getUserProjects();
+         getUserProjects();
       }
     });
 }
@@ -39,6 +39,7 @@ function getUserProjects(){
       dataType: "json",
       url: "/user/" + id + "/projects/" + page,
       success: function(data){
+        // console.log(data);
         data.forEach(function(p){
           loadIframes(p);
         });
@@ -127,7 +128,6 @@ function getUserProjects(){
          $('#trash-'+data.project.params).click(destroyProject);
       }
 
-    checkForOwner(data);
     loadEditors(data);
 
  }
