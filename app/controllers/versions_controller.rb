@@ -1,15 +1,18 @@
 class VersionsController < ApplicationController
 
   def create
-    if user_signed_in?
+    if Version.where(:params => params[:params]).empty?
       @version = Version.create(update_params)
-      @version.user_id = current_user.id
+      @version.params = params[:params]
+      @version.version = 1
     else
+      @old_version = Version.find_by_params(params[:params])
       @version = Version.create(update_params)
-      @version.user_id = 0
+      @version.params = params[:params]
+      @version.version = @old_version.version.to_i + 1
     end
-    @version.params = params[:params]
-    @version.version = 1
+
+    @version.user_id = current_user.id
     @version.save
     flash[:notice] = "Your Diddle was successfully saved!"
     render  :js => "window.location = '#{@version.params}/#{@version.version}'"
