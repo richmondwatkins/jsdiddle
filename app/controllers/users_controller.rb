@@ -13,12 +13,17 @@ class UsersController < ApplicationController
   def get_projects
     @user = User.find(params[:id])
     @projects = @user.projects.order('id desc').page(params[:page]).per(4)
+    @allVersions = []
+    @projects.each do |project|
+      @project = Hash.new
+      @project["project"] = project
+      @project["versions"] =  project.versions
+      @allVersions << @project
+    end
     respond_to do |format|
       format.html 
-      format.json { render json:@projects}
+      format.json { render json:@allVersions}
     end
   end
-
-
 
 end
