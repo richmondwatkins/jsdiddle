@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 # devise_for :users, :controllers => { registrations: 'registrations' }
   get 'user/:id/projects/:page', :to => 'users#get_projects'
+  get 'current/user/:id', :to => 'users#current_user_check'
 
   get '/projects/all', :to => 'projects#show_all'
   get '/projects/get_all/:page', :to => 'projects#get_all'  

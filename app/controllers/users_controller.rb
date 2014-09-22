@@ -26,4 +26,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def current_user_check
+    @result = false 
+    if params[:id].to_i == current_user.id
+      @result = true
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { render json:@result}
+    end
+  end
+
 end

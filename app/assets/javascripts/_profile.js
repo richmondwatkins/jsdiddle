@@ -2,14 +2,33 @@
 
 $(document).ready(init);
 
+var isOwner;
 function init(){
-  getUserProjects();
+  checkForOwner();
 
   window.onscroll = function(event){
       if ( $(window).scrollTop() + $(window).height() === $(document).height()  ){
         getUserProjects();
       }
     }
+}
+
+function checkForOwner(project){
+   var id = $('#user-id').data('id');  
+
+  $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: "/current/user/"+id,
+      success: function(result){
+        if(result === true){
+          isOwner = true;
+        }else {
+          isOwner = false;
+        }
+        getUserProjects();
+      }
+    });
 }
 
 var page = 1;
@@ -36,9 +55,6 @@ function getUserProjects(){
     var iframe = $('<div class="project-div" id="project-'+data.project.params+'">' +
                       '<div id="profile-sub-menu'+data.project.params+'">' +
                         '<a href="/' + data.project.params + '"class="run-'+data.project.params+'" id="project-link-'+data.project.params+'">' + data.project.name + '</a>'+
-                        '<a href="#" class= "profile-icon" id=trash-'+data.project.params+' data-id="'+data.project.id+'"> ' +
-                          '<span class="glyphicon glyphicon-trash"></span>' +
-                        '</a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
                             '<li class="active"><a href="#output-'+data.project.params+'" data-toggle="tab">Output</a></li>' +
@@ -72,7 +88,6 @@ function getUserProjects(){
       $('.run-js-'+data.project.params+'').click(runJS);
     }
 
-      $('#trash-'+data.project.params).click(destroyProject);
 
       document.getElementById(data.project.id).contentWindow.document.write('<!DOCTYPE html>' +
                                                                     '<html class="results-html">' +
@@ -104,6 +119,15 @@ function getUserProjects(){
       }
 
 
+      if(isOwner === true){
+        var $trashIcon =  $('<a href="#" class= "profile-icon" id=trash-'+data.project.params+' data-id="'+data.project.id+'"> ' +
+                          '<span class="glyphicon glyphicon-trash"></span>' +
+                        '</a>');
+         $('#project-link-'+data.project.params).after($trashIcon);
+         $('#trash-'+data.project.params).click(destroyProject);
+      }
+
+    checkForOwner(data);
     loadEditors(data);
 
  }
@@ -162,6 +186,7 @@ function getUserProjects(){
                   })();
   profileJavascriptEditor.setValue(data.project.javascript);
 }
+
 
 function changeVersion(){
   var path = $(this).val();
