@@ -8,7 +8,6 @@ $(document).ready(function () {
   });
 
  function queryProject(){
-  console.log('run');
   var path = window.location.pathname.split('/');
   var params = path[1];
   $.ajax({
