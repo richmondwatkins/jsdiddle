@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require_tree src
+//= require_tree ../../../vendor/assets/javascripts/src
 //= require src/ace.js
 //= require src/mode-css.js
 //= require src/mode-html.js
