@@ -6,7 +6,7 @@ function init(){
   getUserProjects();
 
   window.onscroll = function(event){
-      if ( $(window).scrollTop() + $(window).height() >= $(document).height() -100 ){
+      if ( $(window).scrollTop() + $(window).height() === $(document).height()  ){
         getUserProjects();
       }
     }
@@ -20,7 +20,6 @@ function getUserProjects(){
       dataType: "json",
       url: "/user/" + id + "/projects/" + page,
       success: function(data){
-        console.log(data);
         data.forEach(function(p){
           loadIframes(p);
         });
@@ -31,6 +30,7 @@ function getUserProjects(){
 }
 
  function loadIframes(data){
+  // console.log(data);
     data.javascript = data.project.javascript.replace(/"/g, "'");
 
     var iframe = $('<div class="project-div" id="project-'+data.project.params+'">' +
