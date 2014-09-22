@@ -6,6 +6,10 @@
      
 <div id="project_id" data-id=<%= @project.id %>  style="display: none;">
 
-
+<iframe id="results" sandbox="allow-forms allow-popups allow-scripts allow-same-origin">
+  <head></head>
+  <body></body>
+</iframe>
 
 <%= javascript_include_tag "_show_projects.js" %>
+<%= javascript_include_tag "_index.js" %>
