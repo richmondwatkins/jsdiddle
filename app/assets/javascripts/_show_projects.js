@@ -27,10 +27,15 @@ $(document).ready(function () {
  function loadIframe(data){
     $('#project-name').val(data.name);
  
-    $('iframe').remove();
-    var iframe = $('<iframe id="results"></iframe>');
-    $('#iframe-container').append(iframe);
-    document.getElementById('results').contentWindow.document.write('<!DOCTYPE html><html>'+data.library+'<style>'+data.css+'</style><body>'+data.html+'<script>'+data.javascript+'</script></body></html>');
+    $("#results").attr(
+     "src", "data:text/html;charset=utf-8," + 
+     "<html>" + 
+     data.html +
+     "<style>"+data.css+"</style>" + 
+     "<script src=\""+data.library+"\"><" + "/script>" +   
+     "<script>"+data.javascript+"<" + "/script>" +         
+     "</html>"
+  );
  }
 
 
