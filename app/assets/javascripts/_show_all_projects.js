@@ -34,7 +34,7 @@
     data.project.javascript = data.project.javascript.replace(/"/g, "'");
 
     var iframe = $('<div class="project-div">' +
-                      '<div>' +
+                      '<div id="sub-menu-'+data.project.params+'">' +
                         '<a href="/' + data.project.params + '"class="run-'+data.project.params+'" id="project-link-'+data.project.params+'">' + data.project.name + '</a>'+
                         '<div id="content">'+
                           '<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">' +
@@ -56,12 +56,20 @@
                           '</div>' +
                         '</div>' +
                       '</div>' +
-                    '<a href="/users/'+data.owner.id+'">'+data.owner.name+'</a>' +
+                    '<a id="user-link'+data.project.params+'" href="/users/'+data.owner.id+'">'+data.owner.name+'</a>' +
                   '</div>'
   );
     
-
     $('#all-projects-container').append(iframe);
+
+      var gravatar = (function(){
+        var hash = CryptoJS.MD5(data.owner.email);
+        var url = "http://www.gravatar.com/avatar/"+hash+"?s=20&d=identicon";
+        return url;
+       })();
+
+      var image = $('<img id="thumb-gravatar"src='+gravatar+'>');
+      $('#sub-menu-'+data.project.params).after(image);
 
     // if(data.project.javascript.length > 4){
 

@@ -1,7 +1,9 @@
 <script src="http://jqwidgets.com/public/jqwidgets/jqx-all.js"></script> 
 <div id="user-id", data-id=<%= @user.id %>></div>
 <div id="user-info">
-  <p>Email: <%= @user.email if @user.email %></p>
+  <%= image_tag avatar_url(@user) %>
+  <p><%= @user.username if @user.username %></p>
+  <p><%= @user.email if @user.email %></p>
   <% if @user == current_user %>
   <%= link_to 'Edit account', edit_user_registration_path %>
   <% end %>

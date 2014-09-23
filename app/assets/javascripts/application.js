@@ -17,6 +17,7 @@
 //= require src/ace.js
 //= require src/mode-css.js
 //= require src/mode-html.js
+//= require md5.js
 //= require jqx-all
 //= require bootstrap.min.js
 //= require _build-editor.js

@@ -11,10 +11,21 @@ h1, h2, h3, h4, h5, p, a {
 
 //======= Profile ======
 
+#user-info {
+  color: red;
+  text-align: center;
+  margin-top: 1%;
+}
 
 #projects-container{
     text-align: center;
  }
+
+#thumb-gravatar {
+  float: left;
+  padding-right: 5px;
+  margin-left: 3px;
+}
 
 .project-div {
   height: 20em;
