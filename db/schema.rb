@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919032232) do
+ActiveRecord::Schema.define(version: 20140923200538) do
 
   create_table "forks", force: true do |t|
     t.string   "name"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20140919032232) do
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.string   "html"
-    t.string   "css"
-    t.string   "javascript"
+    t.text     "html",       limit: 255
+    t.text     "css",        limit: 255
+    t.text     "javascript", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20140919032232) do
 
   create_table "versions", force: true do |t|
     t.string   "name"
-    t.string   "html"
-    t.string   "css"
-    t.string   "javascript"
+    t.text     "html",       limit: 255
+    t.text     "css",        limit: 255
+    t.text     "javascript", limit: 255
     t.integer  "user_id"
     t.string   "params"
     t.string   "library"
