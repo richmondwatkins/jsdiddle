@@ -20,7 +20,9 @@
       url: "/projects/get_all/" + page,
       success: function(data){
         data.forEach(function(d){
-          loadIframes(d);
+          if(d.owner){
+            loadIframes(d);
+          }
         });
       }
     });

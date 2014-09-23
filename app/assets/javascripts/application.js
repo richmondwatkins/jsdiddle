@@ -13,11 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require_tree ../../../vendor/assets/javascripts/src
-//= require src/ace.js
-//= require src/mode-css.js
-//= require src/mode-html.js
-//= require md5.js
-//= require jqx-all
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require bootstrap.min.js
 //= require _build-editor.js
