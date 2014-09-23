@@ -79,7 +79,21 @@
 
     //   $('.run-js-'+data.project.params+'').click(runJS);
     // }
+    if(data.versions.length){
+         var $select = $('<select class="profile-version-select" id="profile-versions-'+data.project.params+'">'+
+                            '<option>Select Version</option>' +
+                            '<option value="'+data.project.params+'">Original</option>' +
+                          '</select>');
 
+        data.versions.forEach(function(v){
+         var $option = $('<option value="/'+data.project.params+'/'+v.version+'">Version '+v.version+'</option>');
+         $($select).append($option);
+        });
+
+        $('#project-link-'+data.project.params).after($select);
+
+        $('#profile-versions-'+data.project.params).on('change', changeVersion);
+      }
 
 
     $("#"+data.project.id).attr(
@@ -144,6 +158,10 @@
   profileJavascriptEditor.setValue(data.javascript);
 }
 
+function changeVersion(){
+  var path = $(this).val();
+  window.location = path;
+}
 
 
 })();

@@ -26,9 +26,9 @@ $(document).ready(function () {
  }
 
  function loadIframe(data){
-  console.log(data.library);
     $('#project-name').val(data.name);
- 
+    $('#library-selection').val(data.library);
+
     $("#results").attr(
      "src", "data:text/html;charset=utf-8," + 
      "<html>" + 

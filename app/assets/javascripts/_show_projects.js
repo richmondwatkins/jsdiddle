@@ -26,7 +26,8 @@ $(document).ready(function () {
 
  function loadIframe(data){
     $('#project-name').val(data.name);
- 
+    $('#library-selection').val(data.library);
+    
     $("#results").attr(
      "src", "data:text/html;charset=utf-8," + 
      "<html>" + 

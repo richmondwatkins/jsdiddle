@@ -32,6 +32,8 @@ class ProjectsController < ApplicationController
       @project = Hash.new
       @project["owner"] = project.user
       @project["project"] = project
+      @project["versions"] =  project.versions
+
       @allProjects << @project
     end
      respond_to do |format|
