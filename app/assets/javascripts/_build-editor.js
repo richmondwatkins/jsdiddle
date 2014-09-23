@@ -8,7 +8,7 @@ $(document).ready(init);
 
 function init(){
   ace.config.set("workerPath", "/perm_assets/javascripts");
-  
+
   if($('#mainSplitter').length){
     makePanes();
     $('#theme-selection').on('change', changeTheme);
