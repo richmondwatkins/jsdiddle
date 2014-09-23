@@ -82,12 +82,12 @@ function getUserProjects(){
 
     $('#projects-container').append(iframe);
 
-    if(data.project.javascript.length > 4){
-      $('#project-link-'+data.project.params).after('<a href="#" class="profile-icon" class="run-js-'+data.project.params+' run" >' +
-                                                      '<span class="glyphicon glyphicon-play run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '"></span>' +
-                                                    '</a>');
-      $('.run-js-'+data.project.params+'').click(runJS);
-    }
+    // if(data.project.javascript.length > 4){
+    //   $('#project-link-'+data.project.params).after('<a href="#" class="profile-icon" class="run-js-'+data.project.params+' run" >' +
+    //                                                   '<span class="glyphicon glyphicon-play run-js-'+data.project.params+' run" data-javascript="' + data.project.javascript + '" data-id="' + data.project.id + '"></span>' +
+    //                                                 '</a>');
+    //   $('.run-js-'+data.project.params+'').click(runJS);
+    // }
 
 
       $("#"+data.project.id).attr(
@@ -131,9 +131,11 @@ function getUserProjects(){
  }
 
  function runJS(e){
+  console.log('wooo');
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
-  var doc = document.getElementById(projectId).contentWindow.document.write('<script>'+js+'</script>');
+   $("#"+projectId).attr("<script>"+js+"<" + "/script>");
+
   e.preventDefault();
  }
 
