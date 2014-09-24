@@ -131,7 +131,6 @@ function getUserProjects(){
  }
 
  function runJS(e){
-  console.log('wooo');
   var js = $(this).data('javascript');
   var projectId = $(this).data('id');
    $("#"+projectId).attr("<script>"+js+"<" + "/script>");
@@ -141,7 +140,6 @@ function getUserProjects(){
 
  function destroyProject(e){
   var projectId = $(this).data('id');
-  console.log(projectId);
   $.ajax({
       type: "DELETE",
       dataType: "json",

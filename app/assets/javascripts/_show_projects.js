@@ -51,7 +51,6 @@ function updateProject(e){
   var name = $('#project-name').val();
   var library = $('#library-selection').val()
   var project_id = $('#project_id').data('id');
-  console.log(project_id);
     $.ajax({
       type: "POST",
       url: "/versions/" +params,

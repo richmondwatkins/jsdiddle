@@ -19,7 +19,6 @@ function init(){
 }
 
 function checkLeave(e){
-  console.log('check');
    if(htmlEditor.getValue().length > 2 || cssEditor.getValue().length > 2 || javascriptEditor.getValue().length > 2){
       console.log(cssEditor.getValue().length);
         return 'Are you sure?';
