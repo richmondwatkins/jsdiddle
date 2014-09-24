@@ -89,11 +89,13 @@ function getUserProjects(){
 
 
       $("#"+data.project.id).attr(
-       "src", "data:text/html;charset=utf-8," + 
+      "src", "data:text/html;charset=utf-8," + 
        "<html>" + 
-       data.project.html +
-       "<style>"+data.project.css+"</style>" + 
-       "<script src=\""+data.project.library+"\"><" + "/script>" +   
+         "<head>" +
+            "<script src=\""+data.project.library+"\"><" + "/script>" +   
+            "<style>"+data.project.css+"</style>" + 
+         "</head>" +
+        data.project.html +
        "<script>"+data.project.javascript+"<" + "/script>" +         
        "</html>"
      );

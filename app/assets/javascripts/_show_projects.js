@@ -31,9 +31,11 @@ $(document).ready(function () {
     $("#results").attr(
      "src", "data:text/html;charset=utf-8," + 
      "<html>" + 
-     data.html +
-     "<style>"+data.css+"</style>" + 
-     "<script src=\""+data.library+"\"><" + "/script>" +   
+       "<head>" +
+          "<script src=\""+data.library+"\"><" + "/script>" +  
+          "<style>"+data.css+"</style>" +  
+       "</head>" +
+      data.html +
      "<script>"+data.javascript+"<" + "/script>" +         
      "</html>"
   );

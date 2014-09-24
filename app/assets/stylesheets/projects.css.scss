@@ -8,6 +8,30 @@ h1, h2, h3, h4, h5, p, a {
   font-family: 'Inconsolata';
 }
 
+#logo {
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-left: 10px;
+}
+
+#logo-text {
+  padding-right: 30px;
+  position: relative;
+  top: 12px;
+  right: 60px;
+    
+    a {
+      color: white;
+      text-decoration: none;
+    }
+}
+
+ul.navbar-nav{
+  position: relative;
+  right: 30px;
+}
 
 //======= Profile ======
 

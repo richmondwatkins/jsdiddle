@@ -16,9 +16,11 @@ function init(){
     $("#results").attr(
      "src", "data:text/html;charset=utf-8," + 
      "<html>" + 
+         "<head>" +
+            "<script src=\""+library+"\"><" + "/script>" +  
+            "<style>"+css+"</style>" +  
+         "</head>" +
      html +
-     "<style>"+css+"</style>" + 
-     "<script src=\""+library+"\"><" + "/script>" +   
      "<script>"+js+"<" + "/script>" +         
      "</html>"
   );

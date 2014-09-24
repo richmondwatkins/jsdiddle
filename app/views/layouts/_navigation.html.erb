@@ -8,8 +8,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Diddle', root_path, class: 'navbar-brand' %>
-    </div>
+      <%= image_tag("logo.png", :alt => "jsDiddle logo", :id => "logo") %>
+<!--       <div id="logo-text"><%= link_to 'js { Diddle }', root_path %></div>
+ -->    </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
