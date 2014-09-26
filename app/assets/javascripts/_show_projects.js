@@ -28,6 +28,10 @@ $(document).ready(function () {
     $('#project-name').val(data.name);
     $('#library-selection').val(data.library);
     
+    $("#results").remove();
+    var iframe = $('<iframe id="results" sandbox="allow-forms allow-popups allow-scripts allow-same-origin"></iframe>');
+    $('#iframe-container').append(iframe);
+    
     $("#results").attr(
      "src", "data:text/html;charset=utf-8," + 
      "<html>" + 
