@@ -108,7 +108,7 @@ function getUserProjects(){
                           '</select>');
 
         data.versions.forEach(function(v){
-         var $option = $('<option value="/'+data.project.params+'/'+v.version+'">Version '+v.version+'</option>');
+         var $option = $('<option value="/'+data.project.params+'/'+v.version+'">Update '+v.version+'</option>');
          $($select).append($option);
         });
 

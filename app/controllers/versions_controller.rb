@@ -7,22 +7,7 @@ class VersionsController < ApplicationController
       @version.version = 1
     else
       @old_version = Version.where("params = ?", params[:params])
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-
-      puts @old_version[0].name
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-      puts '====================='
-
+  
       @version = Version.create(update_params)
       @version.params = params[:params]
       @version.version = @old_version.last.version.to_i + 1

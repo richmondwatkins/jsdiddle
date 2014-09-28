@@ -89,7 +89,7 @@ function appendVersions(versions){
                   '</select>')
 
   versions.forEach(function(v){
-    var $option = $('<option value=/'+v.params+'/'+v.version+'>Version '+v.version+'</option>');
+    var $option = $('<option value=/'+v.params+'/'+v.version+'>Update '+v.version+'</option>');
     $select.append($option);
   });
 
