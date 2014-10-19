@@ -47,6 +47,7 @@ $(document).ready(function () {
 
 
 function updateProject(e){
+  console.log('update');
   var path = window.location.pathname.split('/');
   var params = path[1];
   var html = htmlEditor.getValue();
